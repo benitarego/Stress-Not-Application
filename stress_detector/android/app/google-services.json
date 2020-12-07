@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "613822097196",
+    "firebase_url": "https://mental-health-evaluation-6f832.firebaseio.com",
+    "project_id": "mental-health-evaluation-6f832",
+    "storage_bucket": "mental-health-evaluation-6f832.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613822097196:android:020dc9a7013bb184406e89",
+        "android_client_info": {
+          "package_name": "com.example.stress_detector"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "613822097196-0n05ms5mu4t67do5pahv625f9rfborcv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3COSXPSLy0SCieHv3ZRlQ2p82WK520Zc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "613822097196-0n05ms5mu4t67do5pahv625f9rfborcv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
