@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -79,7 +81,7 @@ class _SplashScreenState extends State<SplashScreen> {
               children: <Widget>[
                 Opacity(
                   opacity: 1.0,
-                  child: Image.asset('assets/applogo.png', width: 120.0, height: 120.0,),
+                  child: Image.asset('assets/applogo.png', width: 150.0, height: 150.0,),
                 ),
                 Shimmer.fromColors(
                   baseColor: Colors.white,
