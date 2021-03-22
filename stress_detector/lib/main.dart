@@ -1,11 +1,12 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:stress_detector/DashboardPage.dart';
 import 'package:stress_detector/LoginPage.dart';
-import 'package:stress_detector/ThemeColor.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,28 +33,45 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
 
   @override
-  void initState() {
-    super.initState();
-
-    _mockCheckForSession().then(
-            (status) {
-          if (status) {
+  initState() {
+    _mockCheckForSession().then((status) {
+      if (status) {
+        FirebaseAuth.instance
+            .currentUser()
+            .then((currentUser) => {
+          if (currentUser == null) {
             Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
                     builder: (BuildContext context) => LoginScreen()
                 )
-            );
-          } else {
-            // _navigateToLogin();
+            )
           }
-        }
-    );
+          else {
+            Firestore.instance
+                .collection("Users")
+                .document(currentUser.uid)
+                .get()
+                .then((DocumentSnapshot result) {
+              print(currentUser.email);
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DashboardPage(
+                        uid: currentUser.uid,
+                      )));
+            })
+                .catchError((e) => print(e))
+          }
+        }).catchError((e) => print(e));
+      } else {
+        print('error');
+      }
+    });
+    super.initState();
   }
 
-
   Future<bool> _mockCheckForSession() async {
-    await Future.delayed(Duration(milliseconds: 6000), () {});
-
+    await Future.delayed(Duration(milliseconds: 3000), () {});
     return true;
   }
 

@@ -68,39 +68,53 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: 20.0,),
                     FadeAnimation(0.6,
-                      Text('Login to your Twitter account',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.black,
+                      Container(
+                        padding: EdgeInsets.only(left: 30, right: 30),
+                        child: Text('Real time Twitter monitoring tool for mental health analysis and evaluation.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.black87,
+                          ),
                         ),
-                      ),
+                      )
                     ),
                     SizedBox(height: 30.0,),
-                    // GestureDetector(
-                    //   onDoubleTap: login,
-                    //   child: Padding(
-                    //     padding: EdgeInsets.only(left: 30, right: 30),
-                    //     child: FadeAnimation(0.8,
-                    //         Container(
-                    //           width: 100,
-                    //           height: 60,
-                    //           decoration: BoxDecoration(
-                    //               borderRadius: BorderRadius.circular(50),
-                    //               color: Colors.black
-                    //           ),
-                    //           child: Row(
-                    //             children: <Widget>[
-                    //               SizedBox(width: 60,),
-                    //               Image.asset('assets/twitter.png', width: 30.0, height: 30.0,),
-                    //               SizedBox(width: 20,),
-                    //               Text("Login with Twitter", style: TextStyle(color: Colors.white, fontSize: 20),)
-                    //             ],
-                    //           ),
+                    // FadeAnimation(0.8,
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: <Widget>[
+                    //     FlatButton(
+                    //       onPressed: login,
+                    //       color: Colors.black,
+                    //       child: Container(
+                    //         decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(20),
                     //         ),
-                    //     ),
-                    //   ),
-                    // ),
+                    //         child: Row(
+                    //           children: <Widget>[
+                    //             Image.asset(
+                    //               'assets/twitter.png',
+                    //               width: 30,
+                    //               height: 30,
+                    //             ),
+                    //             Text(
+                    //               'Sign In with Twitter',
+                    //               style: TextStyle(
+                    //                   color: Colors.white,
+                    //                   fontWeight: FontWeight.bold
+                    //               ),
+                    //             ),
+                    //           ],
+                    //         ),
+                    //       ),
+                    //       hoverColor: Colors.grey,
+                    //       height: 50,
+                    //       minWidth: 300,
+                    //       padding: EdgeInsets.all(16),
+                    //     )
+                    //   ],
+                    // )),
                     FadeAnimation(0.8, InkWell(
                       onTap: () {
                         login();
@@ -110,21 +124,27 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Container(
                         height: 50,
                         width: 300,
-                        child: Center(
-                          child: Text(
-                            'Sign In with Twitter',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold
-                            ),
+                        padding: EdgeInsets.only(left: 50, right: 50, top: 10, bottom: 10),
+                        child: Row(
+                            children: <Widget>[
+                              Image.asset(
+                                'assets/twitter.png',
+                                width: 30,
+                                height: 30,
+                              ),
+                              SizedBox(width: 20,),
+                              Text(
+                                'Sign In with Twitter',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
-                            border: Border.all(
-                                color: Colors.black,
-                                width: 3
-                            )
+                            color: Colors.black,
                         ),
                       ),
                     )),
@@ -180,62 +200,3 @@ void _signInWithTwitter(String token, String secret) async {
   );
   await _auth.signInWithCredential(credential);
 }
-
-_logout() async {
-  await twitterLogin.logOut();
-  await _auth.signOut();
-}
-
-// class LogOut extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Dashboard"),
-//       ),
-//       body: FutureBuilder(
-//         future: FirebaseAuth.instance.currentUser(),
-//         builder: (context, snapshot) {
-//           FirebaseUser firebaseUser = snapshot.data;
-//           return snapshot.hasData
-//               ? Center(
-//                 child: Column(
-//                   mainAxisAlignment: MainAxisAlignment.center,
-//                   crossAxisAlignment: CrossAxisAlignment.center,
-//                   children: [
-//                     Text(
-//                       "SignIn Success",
-//                       style: TextStyle(
-//                         color: Colors.green,
-//                         fontWeight: FontWeight.bold,
-//                         fontSize: 30,
-//                       ),
-//                     ),
-//                     SizedBox(height: 20),
-//                     Text("UserId: ${firebaseUser.uid}"),
-//                     SizedBox(height: 20),
-//                     firebaseUser.photoUrl == null
-//                         ? SizedBox(height: 0)
-//                         : Image.network(firebaseUser.photoUrl, height: 100),
-//                     Text("Your name: ${firebaseUser.displayName}"),
-//                     Text("Your email: ${firebaseUser.email}"),
-//                     SizedBox(height: 20,),
-//                     RaisedButton(
-//                       onPressed: () {
-//                         _logout();
-//                       },
-//                       child: Text(
-//                         "Logout",
-//                         style: TextStyle(color: Colors.white),
-//                       ),
-//                       color: Colors.blue,
-//                     )
-//                   ],
-//                 ),
-//           )
-//               : CircularProgressIndicator();
-//         },
-//       ),
-//     );
-//   }
-// }
