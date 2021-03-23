@@ -17,15 +17,6 @@ class _ProfilePageState extends State<ProfilePage> {
       consumerSecret: 'rSfXe1a3Qk1V9B3DSrbcVJZrH402FLWvjsbiFQ9BvJ0MxWMJV6'
   );
 
-  void _signInWithTwitter(String token, String secret) async {
-    final AuthCredential credential = TwitterAuthProvider.getCredential(
-        authToken: token,
-        authTokenSecret: secret
-    );
-    await _auth.signInWithCredential(credential);
-    print('Login done');
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,9 +25,9 @@ class _ProfilePageState extends State<ProfilePage> {
         backgroundColor: Colors.black,
         elevation: 0,
         actions: [
-          RaisedButton(
+          IconButton(
+            icon: Icon(Icons.logout),
             onPressed: () {
-              FirebaseAuth auth = FirebaseAuth.instance;
               twitterLogin.logOut().then((res) {
                 print('Signed Out');
                 Navigator.pushReplacement(
@@ -48,11 +39,6 @@ class _ProfilePageState extends State<ProfilePage> {
               });
               _auth.signOut();
             },
-            child: Text(
-              "Logout",
-              style: TextStyle(color: kThemeColor),
-            ),
-            color: Colors.black,
           )
         ],
       ),
@@ -66,8 +52,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     color: Colors.white,
                     width: MediaQuery.of(context).size.width,
                     child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(height: 20),
                         firebaseUser.photoUrl == null
@@ -84,7 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   )
                 : Center(
-                child: CircularProgressIndicator(backgroundColor: kThemeColor,)
+                  child: CircularProgressIndicator(backgroundColor: kThemeColor,)
             );
           },
         ),

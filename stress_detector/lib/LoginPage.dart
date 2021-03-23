@@ -52,11 +52,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 Column(
                   children: <Widget>[
                     SizedBox(height: 80.0,),
-                    FadeAnimation(0.2,
+                    FadeAnimation(0.4,
                       Image.asset('assets/applogo.png', width: 90.0, height: 90.0,),
                     ),
                     SizedBox(height: 20.0,),
-                    FadeAnimation(0.4,
+                    FadeAnimation(0.6,
                       Text('Welcome to Stress Not!',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     SizedBox(height: 20.0,),
-                    FadeAnimation(0.6,
+                    FadeAnimation(0.8,
                       Container(
                         padding: EdgeInsets.only(left: 30, right: 30),
                         child: Text('Real time Twitter monitoring tool for mental health analysis and evaluation.',
@@ -80,45 +80,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       )
                     ),
                     SizedBox(height: 30.0,),
-                    // FadeAnimation(0.8,
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: <Widget>[
-                    //     FlatButton(
-                    //       onPressed: login,
-                    //       color: Colors.black,
-                    //       child: Container(
-                    //         decoration: BoxDecoration(
-                    //           borderRadius: BorderRadius.circular(20),
-                    //         ),
-                    //         child: Row(
-                    //           children: <Widget>[
-                    //             Image.asset(
-                    //               'assets/twitter.png',
-                    //               width: 30,
-                    //               height: 30,
-                    //             ),
-                    //             Text(
-                    //               'Sign In with Twitter',
-                    //               style: TextStyle(
-                    //                   color: Colors.white,
-                    //                   fontWeight: FontWeight.bold
-                    //               ),
-                    //             ),
-                    //           ],
-                    //         ),
-                    //       ),
-                    //       hoverColor: Colors.grey,
-                    //       height: 50,
-                    //       minWidth: 300,
-                    //       padding: EdgeInsets.all(16),
-                    //     )
-                    //   ],
-                    // )),
-                    FadeAnimation(0.8, InkWell(
-                      onTap: () {
-                        login();
-                      },
+                    FadeAnimation(1.0, InkWell(
+                      onTap: login,
                       borderRadius: BorderRadius.circular(30),
                       splashColor: kThemeColor,
                       child: Container(
@@ -137,7 +100,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 'Sign In with Twitter',
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontWeight: FontWeight.bold
+                                    fontWeight: FontWeight.bold,
+                                  fontSize: 17
                                 ),
                               ),
                             ],
@@ -189,8 +153,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
 FirebaseAuth _auth = FirebaseAuth.instance;
 final TwitterLogin twitterLogin = new TwitterLogin(
-    consumerKey: 'IXo5uEathVAM3NIQcsYTioDTY',
-    consumerSecret: 'rSfXe1a3Qk1V9B3DSrbcVJZrH402FLWvjsbiFQ9BvJ0MxWMJV6'
+    consumerKey: '08OK5WCBZOikvduhRawVdd4so',
+    consumerSecret: 'WW9foP5mqpJ886x4AR1HZmemKGpmz7SO3HppLRZT1p4YVFE7ry'
 );
 
 void _signInWithTwitter(String token, String secret) async {

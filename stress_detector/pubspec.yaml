@@ -37,7 +37,10 @@ dependencies:
   flutter_launcher_icons: ^0.8.1
   firebase_core: ^0.4.4
   charts_flutter: ^0.9.0
-  curved_navigation_bar: ^0.3.3
+#  curved_navigation_bar: ^0.3.3
+  google_maps_flutter:
+  http:
+  shared_preferences:
 
 flutter_icons:
   image_path: "assets/applogo.png"

@@ -34,9 +34,9 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.black,
         elevation: 0,
         actions: [
-          RaisedButton(
+          IconButton(
+            icon: Icon(Icons.logout),
             onPressed: () {
-              FirebaseAuth auth = FirebaseAuth.instance;
               twitterLogin.logOut().then((res) {
                 print('Signed Out');
                 Navigator.pushReplacement(
@@ -48,11 +48,6 @@ class _HomePageState extends State<HomePage> {
               });
               _auth.signOut();
             },
-            child: Text(
-              "Logout",
-              style: TextStyle(color: kThemeColor),
-            ),
-            color: Colors.black,
           )
         ],
       ),

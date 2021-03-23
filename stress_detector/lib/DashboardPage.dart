@@ -10,7 +10,6 @@ import 'package:stress_detector/RecommendationsPage.dart';
 import 'package:stress_detector/ThemeColor.dart';
 import 'package:stress_detector/Loading.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class DashboardPage extends StatefulWidget {
   String uid;
@@ -39,8 +38,8 @@ class _DashboardPageState extends State<DashboardPage> {
 
   FirebaseAuth _auth = FirebaseAuth.instance;
   final TwitterLogin twitterLogin = new TwitterLogin(
-      consumerKey: 'IXo5uEathVAM3NIQcsYTioDTY',
-      consumerSecret: 'rSfXe1a3Qk1V9B3DSrbcVJZrH402FLWvjsbiFQ9BvJ0MxWMJV6'
+      consumerKey: '08OK5WCBZOikvduhRawVdd4so',
+      consumerSecret: 'WW9foP5mqpJ886x4AR1HZmemKGpmz7SO3HppLRZT1p4YVFE7ry'
   );
 
   void _signInWithTwitter(String token, String secret) async {
@@ -67,7 +66,7 @@ class _DashboardPageState extends State<DashboardPage> {
         return AnalyticsPage();
         break;
       case 2:
-        return RecommendationsPage();
+        return PlacesSearchMapSample();
         break;
       case 3:
         return ProfilePage();
@@ -91,24 +90,61 @@ class _DashboardPageState extends State<DashboardPage> {
           child: _showPage,
         ),
       ),
-      bottomNavigationBar: CurvedNavigationBar(
-        height: 50,
-        color: Colors.black,
-        backgroundColor: Colors.white,
-        buttonBackgroundColor: kThemeColor,
-        items: <Widget>[
-          IconButton(icon: Icon(Icons.home, color: Colors.white,),),
-          IconButton(icon: Icon(Icons.bar_chart, color: Colors.white,),),
-          IconButton(icon: Icon(Icons.star, color: Colors.white,),),
-          IconButton(icon: Icon(Icons.person, color: Colors.white,),),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.black,
+        selectedFontSize: 15,
+        unselectedFontSize: 15,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home'),
+            backgroundColor: Colors.grey
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.analytics),
+              title: Text('Analytics'),
+              backgroundColor: Colors.grey
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.star),
+              title: Text('Recommendation'),
+              backgroundColor: Colors.grey
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              title: Text('Profile'),
+              backgroundColor: Colors.grey
+          ),
         ],
-        animationDuration: Duration(milliseconds: 400),
         onTap: (int tappedIndex) {
           setState(() {
+            _currentIndex = tappedIndex;
             _showPage = _pageChooser(tappedIndex);
           });
         },
       ),
+      // bottomNavigationBar: CurvedNavigationBar(
+      //   color: Colors.black,
+      //   backgroundColor: Colors.white,
+      //   buttonBackgroundColor: kThemeColor,
+      //   height: 50,
+      //   items: <Widget>[
+      //     Icon(Icons.home, color: Colors.white,),
+      //     Icon(Icons.bar_chart, color: Colors.white,),
+      //     Icon(Icons.star, color: Colors.white,),
+      //     Icon(Icons.person, color: Colors.white,),
+      //   ],
+      //   animationDuration: Duration(milliseconds: 400),
+      //   onTap: (int tappedIndex) {
+      //     setState(() {
+      //       _showPage = _pageChooser(tappedIndex);
+      //     });
+      //   },
+      // ),
     );
   }
 }

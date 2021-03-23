@@ -2,9 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:stress_detector/ThemeColor.dart';
 import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 import 'package:stress_detector/LoginPage.dart';
+import 'package:stress_detector/Graphs/Tweets.dart';
+import 'package:stress_detector/Graphs/DailyGraph.dart';
+import 'package:stress_detector/Graphs/WeeklyGraph.dart';
+import 'package:stress_detector/Graphs/MonthlyGraph.dart';
+
 
 class AnalyticsPage extends StatefulWidget {
   @override
@@ -17,18 +21,9 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
 
   FirebaseAuth _auth = FirebaseAuth.instance;
   final TwitterLogin twitterLogin = new TwitterLogin(
-      consumerKey: 'IXo5uEathVAM3NIQcsYTioDTY',
-      consumerSecret: 'rSfXe1a3Qk1V9B3DSrbcVJZrH402FLWvjsbiFQ9BvJ0MxWMJV6'
+      consumerKey: '08OK5WCBZOikvduhRawVdd4so',
+      consumerSecret: 'WW9foP5mqpJ886x4AR1HZmemKGpmz7SO3HppLRZT1p4YVFE7ry'
   );
-
-  void _signInWithTwitter(String token, String secret) async {
-    final AuthCredential credential = TwitterAuthProvider.getCredential(
-        authToken: token,
-        authTokenSecret: secret
-    );
-    await _auth.signInWithCredential(credential);
-    print('Login done');
-  }
 
   List<charts.Series<Tweets, String>> _seriesBarData;
   List<Tweets> mydata;
@@ -48,8 +43,46 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
     );
   }
 
+  Widget _showgraph = new DailyGraph();
+
+  Widget _graphChooser(int graph) {
+    switch (graph) {
+      case 0:
+        return DailyGraph();
+        break;
+      case 1:
+        return WeeklyGraph();
+        break;
+      case 2:
+        return MonthlyGraph();
+        break;
+      case 3:
+        return DailyGraph();
+        break;
+      case 4:
+        return WeeklyGraph();
+        break;
+      case 5:
+        return MonthlyGraph();
+        break;
+      default:
+        return new Container(
+          child: new Center(
+            child: new Text('No stats found', style: TextStyle(fontSize: 30),),
+          ),
+        );
+    }
+  }
+
   String _statisticsVal;
   List _statistics = ['Daily', 'Weekly', 'Monthly', 'Positive', 'Negative', 'Neutral'];
+
+  @override
+  void initState() {
+    super.initState();
+    _statisticsVal = _statistics[0];
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +92,9 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
         backgroundColor: Colors.black,
         elevation: 0,
         actions: [
-          RaisedButton(
+          IconButton(
+            icon: Icon(Icons.logout),
             onPressed: () {
-              FirebaseAuth auth = FirebaseAuth.instance;
               twitterLogin.logOut().then((res) {
                 print('Signed Out');
                 Navigator.pushReplacement(
@@ -73,11 +106,6 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
               });
               _auth.signOut();
             },
-            child: Text(
-              "Logout",
-              style: TextStyle(color: kThemeColor),
-            ),
-            color: Colors.black,
           )
         ],
       ),
@@ -106,6 +134,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                       onChanged: (value) {
                         setState(() {
                           _statisticsVal = value;
+                          // _showgraph = _graphChooser(value);
                         });
                       },
                       items: _statistics.map((value) {
@@ -117,6 +146,9 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                     ),
                   ),
                 )
+              ),
+              Center(
+                child: _showgraph,
               ),
               _buildBody(context),
               _buildBody1(context),
@@ -176,8 +208,8 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
     );
   }
 
-  Widget _buildChart(BuildContext context, List<Tweets> saledata) {
-    mydata = saledata;
+  Widget _buildChart(BuildContext context, List<Tweets> tweetdata) {
+    mydata = tweetdata;
     _generateData(mydata);
     return Container(
         padding: EdgeInsets.all(16),
@@ -191,14 +223,20 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text('Tweet Analysis',
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.blueGrey),
+            Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Text('Tweet Analysis',
+                style: TextStyle(fontSize: 22.0, fontFamily: 'Roboto', fontWeight: FontWeight.bold, color: Colors.white),
+              ),
             ),
-            // SizedBox(height: 4),
-            // Text('Weekly Analysis',
-            //   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.grey),
-            // ),
-            SizedBox(height: 25.0,),
+            SizedBox(height: 5,),
+            Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Text('Weekly Analysis',
+                style: TextStyle(fontSize: 18.0, fontFamily: 'Roboto', fontWeight: FontWeight.bold, color: Colors.grey),
+              ),
+            ),
+            SizedBox(height: 5,),
             Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8),
@@ -210,7 +248,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                         new charts.DatumLegend(
                           entryTextStyle: charts.TextStyleSpec(
                               color: charts.MaterialPalette.white,
-                              fontFamily: 'Georgia',
+                              fontFamily: 'Roboto',
                               fontSize: 18),
                         )
                       ] ?? ''
@@ -222,8 +260,8 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
     );
   }
 
-  Widget _buildChart1(BuildContext context, List<Tweets> saledata) {
-    mydata = saledata;
+  Widget _buildChart1(BuildContext context, List<Tweets> tweetdata) {
+    mydata = tweetdata;
     _generateData(mydata);
     return Container(
         padding: EdgeInsets.all(16),
@@ -237,14 +275,20 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text('Tweet Analysis',
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.blueGrey),
+            Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Text('Tweet Analysis',
+                style: TextStyle(fontSize: 22.0, fontFamily: 'Roboto', fontWeight: FontWeight.bold, color: Colors.white),
+              ),
             ),
-            // SizedBox(height: 4),
-            // Text('Weekly Analysis',
-            //   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.grey),
-            // ),
-            SizedBox(height: 25.0,),
+            SizedBox(height: 5,),
+            Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Text('Weekly Analysis',
+                style: TextStyle(fontSize: 18.0, fontFamily: 'Roboto', fontWeight: FontWeight.bold, color: Colors.grey),
+              ),
+            ),
+            SizedBox(height: 5,),
             Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8),
@@ -256,7 +300,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                         new charts.DatumLegend(
                           entryTextStyle: charts.TextStyleSpec(
                               color: charts.MaterialPalette.white,
-                              fontFamily: 'Georgia',
+                              fontFamily: 'Roboto',
                               fontSize: 18),
                         )
                       ] ?? ''
@@ -268,8 +312,8 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
     );
   }
 
-  Widget _buildChart2(BuildContext context, List<Tweets> saledata) {
-    mydata = saledata;
+  Widget _buildChart2(BuildContext context, List<Tweets> tweetdata) {
+    mydata = tweetdata;
     _generateData(mydata);
     return Container(
         padding: EdgeInsets.all(16),
@@ -283,14 +327,20 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text('Tweet Analysis',
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.blueGrey),
+            Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Text('Tweet Analysis',
+                style: TextStyle(fontSize: 22.0, fontFamily: 'Roboto', fontWeight: FontWeight.bold, color: Colors.white),
+              ),
             ),
-            // SizedBox(height: 4),
-            // Text('Weekly Analysis',
-            //   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.grey),
-            // ),
-            SizedBox(height: 25.0,),
+            SizedBox(height: 5,),
+            Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Text('Weekly Analysis',
+                style: TextStyle(fontSize: 18.0, fontFamily: 'Roboto', fontWeight: FontWeight.bold, color: Colors.grey),
+              ),
+            ),
+            SizedBox(height: 5,),
             Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8),
@@ -302,7 +352,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                         new charts.DatumLegend(
                           entryTextStyle: charts.TextStyleSpec(
                               color: charts.MaterialPalette.white,
-                              fontFamily: 'Georgia',
+                              fontFamily: 'Roboto',
                               fontSize: 18),
                         )
                       ] ?? ''
@@ -313,22 +363,4 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
         ) ?? ''
     );
   }
-}
-
-class Tweets {
-  final int statVal;
-  final String statName;
-  final String colorVal;
-  Tweets(this.statVal, this.statName,this.colorVal);
-
-  Tweets.fromMap(Map<String, dynamic> map)
-      : assert(map['statVal'] != null),
-        assert(map['statName'] != null),
-        assert(map['colorVal'] != null),
-        statVal = map['statVal'],
-        colorVal = map['colorVal'],
-        statName = map['statName'];
-
-  @override
-  String toString() => "Record<$statVal:$statName:$colorVal>";
 }
