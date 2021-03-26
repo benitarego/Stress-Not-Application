@@ -1,11 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 import 'package:stress_detector/DashboardPage.dart';
-import 'package:stress_detector/FadeAnimation.dart';
-import 'package:stress_detector/Loading.dart';
-import 'package:stress_detector/ThemeColor.dart';
+import 'file:///D:/projects/stress_detector/lib/Essentials/FadeAnimation.dart';
+import 'file:///D:/projects/stress_detector/lib/Essentials/Loading.dart';
+import 'file:///D:/projects/stress_detector/lib/Essentials/ThemeColor.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -133,13 +134,38 @@ class _LoginScreenState extends State<LoginScreen> {
     final TwitterLoginResult result = await twitterLogin.authorize();
     String newMessage;
     if (result.status == TwitterLoginStatus.loggedIn) {
+      loading = true;
       _signInWithTwitter(result.session.token, result.session.secret);
+      // FirebaseAuth.instance.createUserWithEmailAndPassword(
+      //     email: , password: password)
+      //     .then((currentUser) =>
+      //     Firestore.instance
+      //         .collection("Users")
+      //         .document(currentUser.user.uid)
+      //         .setData({
+      //       "uid": currentUser.user.uid,
+      //     }).then((result) =>
+      //     {
+      //       Navigator.push(
+      //           context,
+      //           MaterialPageRoute(
+      //               builder: (context) => DashboardPage(),
+      //               fullscreenDialog: true)),
+      //       // nameController.clear(),
+      //       // emailController.clear(),
+      //       // passwordController.clear()
+      //     })
+      //         .catchError((e) => print(e)))
+      //     .catchError((e) => print(e));
+      // print("registered");
       Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                   builder: (BuildContext context) => DashboardPage()
               )
           );
+      print('Logged in Successfully');
     } else if (result.status == TwitterLoginStatus.cancelledByUser) {
+      loading = false;
       newMessage = 'Login cancelled by user!';
     } else {
       newMessage = result.errorMessage;
@@ -162,5 +188,6 @@ void _signInWithTwitter(String token, String secret) async {
       authToken: token,
       authTokenSecret: secret
   );
-  await _auth.signInWithCredential(credential);
+  final AuthResult result  = await _auth.signInWithCredential(credential);
+  final FirebaseUser user = result.user;
 }

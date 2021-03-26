@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_twitter_login/flutter_twitter_login.dart';
-import 'package:stress_detector/AnalyticsPage.dart';
-import 'package:stress_detector/HomePage.dart';
+import 'file:///D:/projects/stress_detector/lib/Pages/AnalyticsPage.dart';
+import 'file:///D:/projects/stress_detector/lib/Pages/HomePage.dart';
 import 'package:stress_detector/LoginPage.dart';
-import 'package:stress_detector/ProfilePage.dart';
-import 'package:stress_detector/RecommendationsPage.dart';
-import 'package:stress_detector/ThemeColor.dart';
-import 'package:stress_detector/Loading.dart';
+import 'file:///D:/projects/stress_detector/lib/Pages/ProfilePage.dart';
+import 'file:///D:/projects/stress_detector/lib/Pages/RecommendationsPage.dart';
+import 'file:///D:/projects/stress_detector/lib/Essentials/ThemeColor.dart';
+import 'file:///D:/projects/stress_detector/lib/Essentials/Loading.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 class DashboardPage extends StatefulWidget {

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:stress_detector/DashboardPage.dart';
+import 'package:stress_detector/Essentials/Onboarding.dart';
 import 'package:stress_detector/LoginPage.dart';
 
 void main() {
@@ -42,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
           if (currentUser == null) {
             Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                    builder: (BuildContext context) => LoginScreen()
+                    builder: (BuildContext context) => Onboarding()
                 )
             )
           }
