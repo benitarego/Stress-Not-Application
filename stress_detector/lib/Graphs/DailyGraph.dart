@@ -51,6 +51,7 @@ class _DailyGraphState extends State<DailyGraph> {
       child: Container(
         child: Column(
           children: <Widget>[
+            Text('Daily Analysis', style: TextStyle(fontSize: 25),),
             _buildBody1(context),
             _buildBody2(context),
           ],

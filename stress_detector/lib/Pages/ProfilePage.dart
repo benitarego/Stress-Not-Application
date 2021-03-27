@@ -12,8 +12,8 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
 
   final TwitterLogin twitterLogin = new TwitterLogin(
-      consumerKey: '08OK5WCBZOikvduhRawVdd4so',
-      consumerSecret: 'WW9foP5mqpJ886x4AR1HZmemKGpmz7SO3HppLRZT1p4YVFE7ry'
+      consumerKey: '9b8smdO0UloxZojzQ3Eh4zR7e',
+      consumerSecret: 'MhmYPAiSSeoThxzvGtpSfwEQKuklKbDkQeen9q2Wrsb9bJjhJL'
   );
 
   @override
@@ -23,6 +23,9 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text("Profile", style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.black,
         elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.menu, color: Colors.white, size: 25,),
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.logout),
@@ -49,7 +52,6 @@ class _ProfilePageState extends State<ProfilePage> {
             return snapshot.hasData
                 ? Container(
                     color: Colors.white,
-                    width: MediaQuery.of(context).size.width,
                     child: Column(
                       children: [
                         SizedBox(height: 20),
@@ -66,6 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         SizedBox(height: 20),
                         Text("${firebaseUser.displayName}", style: TextStyle(fontSize: 20, color: Colors.black),),
                         SizedBox(height: 20),
+                        Text("${firebaseUser.email}", style: TextStyle(fontSize: 20, color: Colors.black),),
                       ],
                     ),
                   )

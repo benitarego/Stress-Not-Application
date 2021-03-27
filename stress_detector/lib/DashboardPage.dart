@@ -1,15 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_twitter_login/flutter_twitter_login.dart';
-import 'file:///D:/projects/stress_detector/lib/Pages/AnalyticsPage.dart';
-import 'file:///D:/projects/stress_detector/lib/Pages/HomePage.dart';
-import 'package:stress_detector/LoginPage.dart';
-import 'file:///D:/projects/stress_detector/lib/Pages/ProfilePage.dart';
-import 'file:///D:/projects/stress_detector/lib/Pages/RecommendationsPage.dart';
-import 'file:///D:/projects/stress_detector/lib/Essentials/ThemeColor.dart';
-import 'file:///D:/projects/stress_detector/lib/Essentials/Loading.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:stress_detector/Pages/HomePage.dart';
+import 'package:stress_detector/Pages/AnalyticsPage.dart';
+import 'package:stress_detector/Pages/ProfilePage.dart';
+import 'package:stress_detector/Pages/RecommendationsPage.dart';
 
 class DashboardPage extends StatefulWidget {
   String uid;
@@ -34,21 +29,6 @@ class _DashboardPageState extends State<DashboardPage> {
 
   void getCurrentUser() async {
     currentUser = await FirebaseAuth.instance.currentUser();
-  }
-
-  FirebaseAuth _auth = FirebaseAuth.instance;
-  final TwitterLogin twitterLogin = new TwitterLogin(
-      consumerKey: '08OK5WCBZOikvduhRawVdd4so',
-      consumerSecret: 'WW9foP5mqpJ886x4AR1HZmemKGpmz7SO3HppLRZT1p4YVFE7ry'
-  );
-
-  void _signInWithTwitter(String token, String secret) async {
-    final AuthCredential credential = TwitterAuthProvider.getCredential(
-        authToken: token,
-        authTokenSecret: secret
-    );
-    await _auth.signInWithCredential(credential);
-    print('Login done');
   }
 
   final GlobalKey<ScaffoldState>_scaffoldKey = new GlobalKey<ScaffoldState>();

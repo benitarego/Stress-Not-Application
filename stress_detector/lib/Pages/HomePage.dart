@@ -13,8 +13,8 @@ class _HomePageState extends State<HomePage> {
 
   FirebaseAuth _auth = FirebaseAuth.instance;
   final TwitterLogin twitterLogin = new TwitterLogin(
-      consumerKey: '08OK5WCBZOikvduhRawVdd4so',
-      consumerSecret: 'WW9foP5mqpJ886x4AR1HZmemKGpmz7SO3HppLRZT1p4YVFE7ry'
+      consumerKey: '9b8smdO0UloxZojzQ3Eh4zR7e',
+      consumerSecret: 'MhmYPAiSSeoThxzvGtpSfwEQKuklKbDkQeen9q2Wrsb9bJjhJL'
   );
 
   void _signInWithTwitter(String token, String secret) async {
@@ -33,6 +33,9 @@ class _HomePageState extends State<HomePage> {
         title: Text("Dashboard", style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.black,
         elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.menu, color: Colors.white, size: 25,),
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.logout),

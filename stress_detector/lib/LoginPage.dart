@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 import 'package:stress_detector/DashboardPage.dart';
-import 'file:///D:/projects/stress_detector/lib/Essentials/FadeAnimation.dart';
-import 'file:///D:/projects/stress_detector/lib/Essentials/Loading.dart';
-import 'file:///D:/projects/stress_detector/lib/Essentials/ThemeColor.dart';
+import 'package:stress_detector/Essentials/FadeAnimation.dart';
+import 'package:stress_detector/Essentials/Loading.dart';
+import 'package:stress_detector/Essentials/ThemeColor.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -89,6 +89,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 50,
                         width: 300,
                         padding: EdgeInsets.only(left: 50, right: 50, top: 10, bottom: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.black,
+                        ),
                         child: Row(
                             children: <Widget>[
                               Image.asset(
@@ -107,10 +111,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ],
                           ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: Colors.black,
-                        ),
                       ),
                     )),
                     SizedBox(height: 20),
@@ -134,43 +134,17 @@ class _LoginScreenState extends State<LoginScreen> {
     final TwitterLoginResult result = await twitterLogin.authorize();
     String newMessage;
     if (result.status == TwitterLoginStatus.loggedIn) {
-      loading = true;
       _signInWithTwitter(result.session.token, result.session.secret);
-      // FirebaseAuth.instance.createUserWithEmailAndPassword(
-      //     email: , password: password)
-      //     .then((currentUser) =>
-      //     Firestore.instance
-      //         .collection("Users")
-      //         .document(currentUser.user.uid)
-      //         .setData({
-      //       "uid": currentUser.user.uid,
-      //     }).then((result) =>
-      //     {
-      //       Navigator.push(
-      //           context,
-      //           MaterialPageRoute(
-      //               builder: (context) => DashboardPage(),
-      //               fullscreenDialog: true)),
-      //       // nameController.clear(),
-      //       // emailController.clear(),
-      //       // passwordController.clear()
-      //     })
-      //         .catchError((e) => print(e)))
-      //     .catchError((e) => print(e));
-      // print("registered");
-      Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                  builder: (BuildContext context) => DashboardPage()
-              )
-          );
-      print('Logged in Successfully');
+      print('Logged in successfully!');
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => DashboardPage()),
+      );
     } else if (result.status == TwitterLoginStatus.cancelledByUser) {
-      loading = false;
-      newMessage = 'Login cancelled by user!';
+      newMessage = 'Login cancelled by user.';
     } else {
       newMessage = result.errorMessage;
     }
-
     setState(() {
       message = newMessage;
     });
@@ -179,8 +153,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
 FirebaseAuth _auth = FirebaseAuth.instance;
 final TwitterLogin twitterLogin = new TwitterLogin(
-    consumerKey: '08OK5WCBZOikvduhRawVdd4so',
-    consumerSecret: 'WW9foP5mqpJ886x4AR1HZmemKGpmz7SO3HppLRZT1p4YVFE7ry'
+    consumerKey: '9b8smdO0UloxZojzQ3Eh4zR7e',
+    consumerSecret: 'MhmYPAiSSeoThxzvGtpSfwEQKuklKbDkQeen9q2Wrsb9bJjhJL'
 );
 
 void _signInWithTwitter(String token, String secret) async {
@@ -188,6 +162,5 @@ void _signInWithTwitter(String token, String secret) async {
       authToken: token,
       authTokenSecret: secret
   );
-  final AuthResult result  = await _auth.signInWithCredential(credential);
-  final FirebaseUser user = result.user;
+  await _auth.signInWithCredential(credential);
 }
