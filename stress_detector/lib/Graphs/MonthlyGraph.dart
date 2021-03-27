@@ -15,72 +15,24 @@ class _MonthlyGraphState extends State<MonthlyGraph> {
 
   _generateData() {
     var data1 = [
-      new Tweets1(3, 'December', '0xff23931c'),
-      new Tweets1(5, 'January', '0xff3e97ed'),
-      new Tweets1(7, 'February', '0xffed3e3e'),
-      new Tweets1(5, 'March', '0xffed3e3e'),
+      new Tweets1(32, 'December', '0xff23931c'),
+      new Tweets1(53, 'January', '0xff3e97ed'),
+      new Tweets1(76, 'February', '0xffed3e3e'),
+      new Tweets1(57, 'March', '0xffed3e3e'),
     ];
 
     var data2 = [
-      new Tweets1(4, 'December', '0xff23931c'),
-      new Tweets1(3, 'January', '0xff3e97ed'),
-      new Tweets1(6, 'February', '0xffed3e3e'),
-      new Tweets1(3, 'March', '0xffed3e3e'),
+      new Tweets1(42, 'December', '0xff23931c'),
+      new Tweets1(37, 'January', '0xff3e97ed'),
+      new Tweets1(63, 'February', '0xffed3e3e'),
+      new Tweets1(31, 'March', '0xffed3e3e'),
     ];
     var data3 = [
-      new Tweets1(7, 'December', '0xff23931c'),
-      new Tweets1(5, 'January', '0xff3e97ed'),
-      new Tweets1(4, 'February', '0xffed3e3e'),
-      new Tweets1(6, 'March', '0xffed3e3e'),
+      new Tweets1(72, 'December', '0xff23931c'),
+      new Tweets1(56, 'January', '0xff3e97ed'),
+      new Tweets1(49, 'February', '0xffed3e3e'),
+      new Tweets1(68, 'March', '0xffed3e3e'),
     ];
-    // _seriesData.add(
-    //   charts.Series(
-    //     domainFn: (Tweets1 tweets1, _) => tweets1.statName.toString(),
-    //     measureFn: (Tweets1 tweets1, _) => tweets1.statVal,
-    //     measureLowerBoundFn: (Tweets1 tweets1, _) => tweets1.statVal,
-    //     measureUpperBoundFn: (Tweets1 tweets1, _) => tweets1.statVal,
-    //     colorFn: (Tweets1 tweets1, _) =>
-    //         charts.ColorUtil.fromDartColor(Color(int.parse(tweets1.colorVal))),
-    //     id: 'Tweet Analysis',
-    //     data: data1,
-    //     labelAccessorFn: (Tweets1 row, _) => "${row.statName}",
-    //     fillPatternFn: (_, __) => charts.FillPatternType.solid,
-    //     fillColorFn: (Tweets1 tweets1, _) =>
-    //         charts.ColorUtil.fromDartColor(Color(int.parse(tweets1.colorVal))),
-    //   ),
-    // );
-    // _seriesData.add(
-    //   charts.Series(
-    //     domainFn: (Tweets1 tweets1, _) => tweets1.statName.toString(),
-    //     measureFn: (Tweets1 tweets1, _) => tweets1.statVal,
-    //     measureLowerBoundFn: (Tweets1 tweets1, _) => tweets1.statVal,
-    //     measureUpperBoundFn: (Tweets1 tweets1, _) => tweets1.statVal,
-    //     colorFn: (Tweets1 tweets1, _) =>
-    //         charts.ColorUtil.fromDartColor(Color(int.parse(tweets1.colorVal))),
-    //     id: 'Tweet Analysis',
-    //     data: data2,
-    //     labelAccessorFn: (Tweets1 row, _) => "${row.statName}",
-    //     fillPatternFn: (_, __) => charts.FillPatternType.solid,
-    //     fillColorFn: (Tweets1 tweets1, _) =>
-    //         charts.ColorUtil.fromDartColor(Color(int.parse(tweets1.colorVal))),
-    //   ),
-    // );
-    // _seriesData.add(
-    //   charts.Series(
-    //     domainFn: (Tweets1 tweets1, _) => tweets1.statName.toString(),
-    //     measureFn: (Tweets1 tweets1, _) => tweets1.statVal,
-    //     measureLowerBoundFn: (Tweets1 tweets1, _) => tweets1.statVal,
-    //     measureUpperBoundFn: (Tweets1 tweets1, _) => tweets1.statVal,
-    //     colorFn: (Tweets1 tweets1, _) =>
-    //         charts.ColorUtil.fromDartColor(Color(int.parse(tweets1.colorVal))),
-    //     id: 'Tweet Analysis',
-    //     data: data3,
-    //     labelAccessorFn: (Tweets1 row, _) => "${row.statName}",
-    //     fillPatternFn: (_, __) => charts.FillPatternType.solid,
-    //     fillColorFn: (Tweets1 tweets1, _) =>
-    //         charts.ColorUtil.fromDartColor(Color(int.parse(tweets1.colorVal))),
-    //   ),
-    // );
 
     _seriesData.add(
       charts.Series(
@@ -92,7 +44,7 @@ class _MonthlyGraphState extends State<MonthlyGraph> {
         // fillColorFn: (Tweets1 tweets1, _) =>
         //     charts.ColorUtil.fromDartColor(Color(0xff23931c)),
         measureLowerBoundFn: (Tweets1 tweets1, _) => tweets1.statVal,
-        measureUpperBoundFn: (Tweets1 tweets1, _) => tweets1.statVal + 2,
+        measureUpperBoundFn: (Tweets1 tweets1, _) => 100,
         colorFn: (Tweets1 tweets1, _) =>
             charts.ColorUtil.fromDartColor(Color(0xff23931c)),
       ),
@@ -108,7 +60,7 @@ class _MonthlyGraphState extends State<MonthlyGraph> {
         // fillColorFn: (Tweets1 tweets1, _) =>
         //     charts.ColorUtil.fromDartColor(Color(0xff3e97ed)),
         measureLowerBoundFn: (Tweets1 tweets1, _) => tweets1.statVal,
-        measureUpperBoundFn: (Tweets1 tweets1, _) => tweets1.statVal + 2,
+        measureUpperBoundFn: (Tweets1 tweets1, _) => 100,
         colorFn: (Tweets1 tweets1, _) =>
             charts.ColorUtil.fromDartColor(Color(0xff3e97ed)),
       ),
@@ -124,7 +76,7 @@ class _MonthlyGraphState extends State<MonthlyGraph> {
         // fillColorFn: (Tweets1 tweets1, _) =>
         //     charts.ColorUtil.fromDartColor(Color(0xffed3e3e)),
         measureLowerBoundFn: (Tweets1 tweets1, _) => tweets1.statVal,
-        measureUpperBoundFn: (Tweets1 tweets1, _) => tweets1.statVal + 2,
+        measureUpperBoundFn: (Tweets1 tweets1, _) => 100,
         colorFn: (Tweets1 tweets1, _) =>
             charts.ColorUtil.fromDartColor(Color(0xffed3e3e)),
       ),
@@ -200,7 +152,7 @@ class _MonthlyGraphState extends State<MonthlyGraph> {
                   entryTextStyle: charts.TextStyleSpec(
                       color: charts.MaterialPalette.black,
                       fontFamily: 'Roboto',
-                      fontSize: 14
+                      fontSize: 10
                   ),
                 )
               ] ?? '',

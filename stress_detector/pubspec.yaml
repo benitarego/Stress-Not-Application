@@ -42,6 +42,7 @@ dependencies:
   http:
   shared_preferences:
   introduction_screen:
+  flutter_local_notifications:
 
 flutter_icons:
   image_path: "assets/applogo.png"

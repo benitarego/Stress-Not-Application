@@ -21,7 +21,7 @@ class _DailyGraphState extends State<DailyGraph> {
         domainFn: (Tweets tweets, _) => tweets.statName.toString(),
         measureFn: (Tweets tweets, _) => tweets.statVal,
         measureLowerBoundFn: (Tweets tweets, _) => tweets.statVal,
-        measureUpperBoundFn: (Tweets tweets, _) => tweets.statVal + 3,
+        measureUpperBoundFn: (Tweets tweets, _) => 100,
         colorFn: (Tweets tweets, _) =>
             charts.ColorUtil.fromDartColor(Color(int.parse(tweets.colorVal))),
         id: 'Tweet Analysis',

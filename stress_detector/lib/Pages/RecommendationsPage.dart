@@ -19,8 +19,8 @@ class _PlacesSearchMapSample extends State<PlacesSearchMapSample> {
 
   static const String _API_KEY = 'AIzaSyAIFCtkfQICnpKwRiHWbryLqQ-Sb2RVOIA';
 
-  static double latitude = 19.076090;
-  static double longitude = 72.877426;
+  static double latitude = 19.083140;
+  static double longitude = 72.851160;
   static const String baseUrl =
       "https://maps.googleapis.com/maps/api/place/nearbysearch/json";
 

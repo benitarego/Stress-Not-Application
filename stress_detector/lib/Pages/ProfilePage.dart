@@ -44,40 +44,102 @@ class _ProfilePageState extends State<ProfilePage> {
           )
         ],
       ),
-      body: Container(
-        child: FutureBuilder(
-          future: FirebaseAuth.instance.currentUser(),
-          builder: (context, snapshot) {
-            FirebaseUser firebaseUser = snapshot.data;
-            return snapshot.hasData
-                ? Container(
-                    color: Colors.white,
+      body: Center(
+        child: Container(
+          child: FutureBuilder(
+            future: FirebaseAuth.instance.currentUser(),
+            builder: (context, snapshot) {
+              FirebaseUser firebaseUser = snapshot.data;
+              return snapshot.hasData
+                  ? Container(
+                    height: 320,
+                    width: 250,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(20)
+                    ),
                     child: Column(
                       children: [
                         SizedBox(height: 20),
                         firebaseUser.photoUrl == null
                             ? CircleAvatar(
-                            minRadius: 70,
-                            maxRadius: 70,
+                            minRadius: 50,
+                            maxRadius: 50,
                             backgroundColor: Colors.black
-                            ) : CircleAvatar(
-                          minRadius: 70,
-                          maxRadius: 70,
+                        ) : CircleAvatar(
+                          radius: 50,
                           backgroundImage: NetworkImage(firebaseUser.photoUrl),
                         ),
+                        SizedBox(height: 15),
+                        Text("${firebaseUser.displayName}", style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: 'Roboto'),),
                         SizedBox(height: 20),
-                        Text("${firebaseUser.displayName}", style: TextStyle(fontSize: 20, color: Colors.black),),
-                        SizedBox(height: 20),
-                        Text("${firebaseUser.email}", style: TextStyle(fontSize: 20, color: Colors.black),),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text("Total tweets", style: TextStyle(fontSize: 16, color: kThemeColor, fontFamily: 'Roboto'),),
+                            SizedBox(width: 5),
+                            Text(": 129", style: TextStyle(fontSize: 16, color: Colors.white, fontFamily: 'Roboto'),),
+                          ],
+                        ),
+                        // SizedBox(height: 10,),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   children: <Widget>[
+                        //     Text("Total retweets", style: TextStyle(fontSize: 16, color: kThemeColor, fontFamily: 'Roboto'),),
+                        //     SizedBox(width: 5),
+                        //     Text(": 76", style: TextStyle(fontSize: 16, color: Colors.white, fontFamily: 'Roboto'),),
+                        //   ],
+                        // ),
+                        SizedBox(height: 10,),
+                        Divider(color: Colors.grey, thickness: 0.5,),
+                        SizedBox(height: 10,),
+                        Text('Overall Analysis', style: TextStyle(color: Colors.grey, fontSize: 18),),
+                        SizedBox(height: 15,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                CircleAvatar(
+                                  radius: 8,
+                                  backgroundColor: Colors.green,
+                                ),
+                                SizedBox(width: 5),
+                                Text(": 57", style: TextStyle(fontSize: 16, color: Colors.white, fontFamily: 'Roboto'),),
+                              ],
+                            ),
+                            Row(
+                              children: <Widget>[
+                                CircleAvatar(
+                                  radius: 8,
+                                  backgroundColor: Colors.blue,
+                                ),
+                                SizedBox(width: 5),
+                                Text(": 52", style: TextStyle(fontSize: 16, color: Colors.white, fontFamily: 'Roboto'),),
+                              ],
+                            ),
+                            Row(
+                              children: <Widget>[
+                                CircleAvatar(
+                                  radius: 8,
+                                  backgroundColor: Colors.red,
+                                ),
+                                SizedBox(width: 5),
+                                Text(": 20", style: TextStyle(fontSize: 16, color: Colors.white, fontFamily: 'Roboto'),),
+                              ],
+                            )
+                          ],
+                        )
                       ],
                     ),
                   )
-                : Center(
-                  child: CircularProgressIndicator(backgroundColor: kThemeColor,)
-            );
-          },
+                  : Center(
+                    child: CircularProgressIndicator(backgroundColor: kThemeColor,)
+              );
+            },
+          ),
         ),
-      ),
+      )
     );
   }
 }

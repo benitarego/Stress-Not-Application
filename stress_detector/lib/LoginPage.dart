@@ -82,7 +82,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: 30.0,),
                     FadeAnimation(1.0, InkWell(
-                      onTap: login,
+                      onTap: () {
+                        login();
+                      },
                       borderRadius: BorderRadius.circular(30),
                       splashColor: kThemeColor,
                       child: Container(
@@ -152,6 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
 }
 
 FirebaseAuth _auth = FirebaseAuth.instance;
+
 final TwitterLogin twitterLogin = new TwitterLogin(
     consumerKey: '9b8smdO0UloxZojzQ3Eh4zR7e',
     consumerSecret: 'MhmYPAiSSeoThxzvGtpSfwEQKuklKbDkQeen9q2Wrsb9bJjhJL'

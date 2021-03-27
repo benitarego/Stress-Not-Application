@@ -14,23 +14,23 @@ class _WeeklyGraphState extends State<WeeklyGraph> {
 
   _generateData() {
     var data1 = [
-      new Tweets1(7, 'Week 1', '0xff23931c'),
-      new Tweets1(4, 'Week 2', '0xff3e97ed'),
-      new Tweets1(6, 'Week 3', '0xffed3e3e'),
-      new Tweets1(4, 'Week 4', '0xffed3e3e'),
+      new Tweets1(72, 'Week 1', '0xff23931c'),
+      new Tweets1(41, 'Week 2', '0xff3e97ed'),
+      new Tweets1(63, 'Week 3', '0xffed3e3e'),
+      new Tweets1(46, 'Week 4', '0xffed3e3e'),
     ];
 
     var data2 = [
-      new Tweets1(5, 'Week 1', '0xff23931c'),
-      new Tweets1(6, 'Week 2', '0xff3e97ed'),
-      new Tweets1(3, 'Week 3', '0xffed3e3e'),
-      new Tweets1(6, 'Week 4', '0xffed3e3e'),
+      new Tweets1(55, 'Week 1', '0xff23931c'),
+      new Tweets1(60, 'Week 2', '0xff3e97ed'),
+      new Tweets1(37, 'Week 3', '0xffed3e3e'),
+      new Tweets1(68, 'Week 4', '0xffed3e3e'),
     ];
     var data3 = [
-      new Tweets1(6, 'Week 1', '0xff23931c'),
-      new Tweets1(3, 'Week 2', '0xff3e97ed'),
-      new Tweets1(8, 'Week 3', '0xffed3e3e'),
-      new Tweets1(3, 'Week 4', '0xffed3e3e'),
+      new Tweets1(69, 'Week 1', '0xff23931c'),
+      new Tweets1(36, 'Week 2', '0xff3e97ed'),
+      new Tweets1(80, 'Week 3', '0xffed3e3e'),
+      new Tweets1(34, 'Week 4', '0xffed3e3e'),
     ];
     // _seriesData.add(
     //   charts.Series(
@@ -91,7 +91,7 @@ class _WeeklyGraphState extends State<WeeklyGraph> {
         // fillColorFn: (Tweets1 tweets1, _) =>
         //     charts.ColorUtil.fromDartColor(Color(0xff23931c)),
         measureLowerBoundFn: (Tweets1 tweets1, _) => tweets1.statVal,
-        measureUpperBoundFn: (Tweets1 tweets1, _) => tweets1.statVal + 2,
+        measureUpperBoundFn: (Tweets1 tweets1, _) => 100,
         colorFn: (Tweets1 tweets1, _) =>
             charts.ColorUtil.fromDartColor(Color(0xff23931c)),
       ),
@@ -269,7 +269,7 @@ class _WeeklyGraphState extends State<WeeklyGraph> {
                   entryTextStyle: charts.TextStyleSpec(
                     color: charts.MaterialPalette.black,
                     fontFamily: 'Roboto',
-                    fontSize: 15
+                    fontSize: 12
                   ),
                 )
               ] ?? '',
