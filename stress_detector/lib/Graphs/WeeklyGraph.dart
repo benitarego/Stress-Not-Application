@@ -12,6 +12,12 @@ class _WeeklyGraphState extends State<WeeklyGraph> {
   List<charts.Series<Tweets1, String>> _seriesData;
   // List<Tweets1> mydata, mydata1, mydata2;
 
+  // var axis = charts.NumericAxisSpec(
+  //     renderSpec: charts.GridlineRendererSpec(
+  //       labelStyle: charts.TextStyleSpec(
+  //           fontSize: 12, color: charts.MaterialPalette.white),
+  //     ));
+
   _generateData() {
     var data1 = [
       new Tweets1(72, 'Week 1', '0xff23931c'),
@@ -93,7 +99,7 @@ class _WeeklyGraphState extends State<WeeklyGraph> {
         measureLowerBoundFn: (Tweets1 tweets1, _) => tweets1.statVal,
         measureUpperBoundFn: (Tweets1 tweets1, _) => 100,
         colorFn: (Tweets1 tweets1, _) =>
-            charts.ColorUtil.fromDartColor(Color(0xff23931c)),
+            charts.ColorUtil.fromDartColor(Color(0xff3ac758)),
       ),
     );
 
@@ -109,7 +115,7 @@ class _WeeklyGraphState extends State<WeeklyGraph> {
         measureLowerBoundFn: (Tweets1 tweets1, _) => tweets1.statVal,
         measureUpperBoundFn: (Tweets1 tweets1, _) => tweets1.statVal + 2,
         colorFn: (Tweets1 tweets1, _) =>
-            charts.ColorUtil.fromDartColor(Color(0xff3e97ed)),
+            charts.ColorUtil.fromDartColor(Color(0xff4782d6)),
       ),
     );
 
@@ -125,7 +131,7 @@ class _WeeklyGraphState extends State<WeeklyGraph> {
         measureLowerBoundFn: (Tweets1 tweets1, _) => tweets1.statVal,
         measureUpperBoundFn: (Tweets1 tweets1, _) => tweets1.statVal + 2,
         colorFn: (Tweets1 tweets1, _) =>
-            charts.ColorUtil.fromDartColor(Color(0xffed3e3e)),
+            charts.ColorUtil.fromDartColor(Color(0xfff75c40)),
       ),
     );
   }
@@ -143,7 +149,7 @@ class _WeeklyGraphState extends State<WeeklyGraph> {
       child: Container(
         child: Column(
           children: <Widget>[
-            Text('Weekly Analysis', style: TextStyle(fontSize: 25),),
+            Text('Weekly Analysis', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),),
             buildChart(context)
           ],
         ),
@@ -239,7 +245,7 @@ class _WeeklyGraphState extends State<WeeklyGraph> {
             padding: EdgeInsets.only(left: 10),
             child: Text('Tweet Analysis',
               style: TextStyle(
-                  fontSize: 22.0,
+                  fontSize: 21.0,
                   fontFamily: 'Roboto',
                   fontWeight: FontWeight.bold,
                   color: Colors.black
@@ -251,7 +257,7 @@ class _WeeklyGraphState extends State<WeeklyGraph> {
             padding: EdgeInsets.only(left: 10),
             child: Text('Weekly Analysis',
               style: TextStyle(
-                  fontSize: 18.0,
+                  fontSize: 17.0,
                   fontFamily: 'Roboto',
                   fontWeight: FontWeight.bold,
                   color: Colors.grey
@@ -263,6 +269,8 @@ class _WeeklyGraphState extends State<WeeklyGraph> {
             child: charts.BarChart(
               _seriesData,
               animate: true,
+              // primaryMeasureAxis: axis,
+              // domainAxis: axis,
               barGroupingType: charts.BarGroupingType.grouped,
               behaviors: [
                 new charts.DatumLegend(

@@ -13,25 +13,31 @@ class _MonthlyGraphState extends State<MonthlyGraph> {
   List<charts.Series<Tweets1, String>> _seriesData;
   // List<Tweets1> mydata, mydata1, mydata2;
 
+  // var axis = charts.NumericAxisSpec(
+  //     renderSpec: charts.GridlineRendererSpec(
+  //       labelStyle: charts.TextStyleSpec(
+  //           fontSize: 12, color: charts.MaterialPalette.white),
+  //     ));
+
   _generateData() {
     var data1 = [
       new Tweets1(32, 'December', '0xff23931c'),
       new Tweets1(53, 'January', '0xff3e97ed'),
-      new Tweets1(76, 'February', '0xffed3e3e'),
-      new Tweets1(57, 'March', '0xffed3e3e'),
+      new Tweets1(76, 'February', '0xfff75c40'),
+      new Tweets1(57, 'March', '0xfff75c40'),
     ];
 
     var data2 = [
       new Tweets1(42, 'December', '0xff23931c'),
       new Tweets1(37, 'January', '0xff3e97ed'),
-      new Tweets1(63, 'February', '0xffed3e3e'),
-      new Tweets1(31, 'March', '0xffed3e3e'),
+      new Tweets1(63, 'February', '0xfff75c40'),
+      new Tweets1(31, 'March', '0xfff75c40'),
     ];
     var data3 = [
       new Tweets1(72, 'December', '0xff23931c'),
       new Tweets1(56, 'January', '0xff3e97ed'),
-      new Tweets1(49, 'February', '0xffed3e3e'),
-      new Tweets1(68, 'March', '0xffed3e3e'),
+      new Tweets1(49, 'February', '0xfff75c40'),
+      new Tweets1(68, 'March', '0xfff75c40'),
     ];
 
     _seriesData.add(
@@ -46,7 +52,7 @@ class _MonthlyGraphState extends State<MonthlyGraph> {
         measureLowerBoundFn: (Tweets1 tweets1, _) => tweets1.statVal,
         measureUpperBoundFn: (Tweets1 tweets1, _) => 100,
         colorFn: (Tweets1 tweets1, _) =>
-            charts.ColorUtil.fromDartColor(Color(0xff23931c)),
+            charts.ColorUtil.fromDartColor(Color(0xff3ac758)),
       ),
     );
 
@@ -62,7 +68,7 @@ class _MonthlyGraphState extends State<MonthlyGraph> {
         measureLowerBoundFn: (Tweets1 tweets1, _) => tweets1.statVal,
         measureUpperBoundFn: (Tweets1 tweets1, _) => 100,
         colorFn: (Tweets1 tweets1, _) =>
-            charts.ColorUtil.fromDartColor(Color(0xff3e97ed)),
+            charts.ColorUtil.fromDartColor(Color(0xff4782d6)),
       ),
     );
 
@@ -78,7 +84,7 @@ class _MonthlyGraphState extends State<MonthlyGraph> {
         measureLowerBoundFn: (Tweets1 tweets1, _) => tweets1.statVal,
         measureUpperBoundFn: (Tweets1 tweets1, _) => 100,
         colorFn: (Tweets1 tweets1, _) =>
-            charts.ColorUtil.fromDartColor(Color(0xffed3e3e)),
+            charts.ColorUtil.fromDartColor(Color(0xfff75c40)),
       ),
     );
   }
@@ -96,7 +102,7 @@ class _MonthlyGraphState extends State<MonthlyGraph> {
       child: Container(
         child: Column(
           children: <Widget>[
-            Text('Monthly Analysis', style: TextStyle(fontSize: 25),),
+            Text('Monthly Analysis', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),),
             buildChart(context)
           ],
         ),
@@ -122,7 +128,7 @@ class _MonthlyGraphState extends State<MonthlyGraph> {
             padding: EdgeInsets.only(left: 10),
             child: Text('Tweet Analysis',
               style: TextStyle(
-                  fontSize: 22.0,
+                  fontSize: 21.0,
                   fontFamily: 'Roboto',
                   fontWeight: FontWeight.bold,
                   color: Colors.black
@@ -134,7 +140,7 @@ class _MonthlyGraphState extends State<MonthlyGraph> {
             padding: EdgeInsets.only(left: 10),
             child: Text('Monthly Analysis',
               style: TextStyle(
-                  fontSize: 18.0,
+                  fontSize: 17.0,
                   fontFamily: 'Roboto',
                   fontWeight: FontWeight.bold,
                   color: Colors.grey
@@ -146,6 +152,7 @@ class _MonthlyGraphState extends State<MonthlyGraph> {
             child: charts.BarChart(
               _seriesData,
               animate: true,
+              // primaryMeasureAxis: axis,
               barGroupingType: charts.BarGroupingType.grouped,
               behaviors: [
                 new charts.DatumLegend(

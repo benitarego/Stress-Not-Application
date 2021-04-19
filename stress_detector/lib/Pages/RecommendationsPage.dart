@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:stress_detector/Essentials/ThemeColor.dart';
 import 'package:stress_detector/LoginPage.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PlacesSearchMapSample extends StatefulWidget {
 
@@ -23,6 +25,15 @@ class _PlacesSearchMapSample extends State<PlacesSearchMapSample> {
   static double longitude = 72.851160;
   static const String baseUrl =
       "https://maps.googleapis.com/maps/api/place/nearbysearch/json";
+
+  _launchMap() async {
+    final String googleMapsUrl = "comgooglemaps://?center=$latitude,$longitude";
+    if (await canLaunch(googleMapsUrl)) {
+    await launch(googleMapsUrl);
+    } else {
+    throw 'Could not launch $googleMapsUrl';
+    }
+  }
 
   List<Marker> markers = <Marker>[];
   Error error;
@@ -50,7 +61,8 @@ class _PlacesSearchMapSample extends State<PlacesSearchMapSample> {
     return new Scaffold(
       appBar: AppBar(
         title: Text("Consultations", style: TextStyle(color: Colors.white),),
-        backgroundColor: Colors.black,
+        centerTitle: true,
+        backgroundColor: kThemeColor,
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.menu, color: Colors.white, size: 25,),
@@ -60,7 +72,6 @@ class _PlacesSearchMapSample extends State<PlacesSearchMapSample> {
             icon: Icon(Icons.logout),
             onPressed: () {
               twitterLogin.logOut().then((res) {
-                print('Signed Out');
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => LoginPage()),
@@ -68,7 +79,8 @@ class _PlacesSearchMapSample extends State<PlacesSearchMapSample> {
               }).catchError((e) {
                 print(e);
               });
-              _auth.signOut();
+              FirebaseAuth.instance.signOut();
+              print('Signed Out');
             },
           )
         ],
@@ -84,7 +96,8 @@ class _PlacesSearchMapSample extends State<PlacesSearchMapSample> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          searchNearby(latitude, longitude);
+          // searchNearby(latitude, longitude);
+          _launchMap();
         },
         label: Text('Places Nearby'),
         icon: Icon(Icons.place),

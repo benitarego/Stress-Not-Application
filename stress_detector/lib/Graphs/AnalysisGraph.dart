@@ -9,6 +9,8 @@ class AnalysisGraph extends StatefulWidget {
 class _AnalysisGraphState extends State<AnalysisGraph> {
   List<charts.Series<Tweets2, int>> _seriesData1, _seriesData2, _seriesData3;
 
+  Color green = Color(0xff3ac758);
+
   _generateData1() {
     final data1 = [
       new Tweets2(0, 5),
@@ -57,6 +59,8 @@ class _AnalysisGraphState extends State<AnalysisGraph> {
       new Tweets2(3, 20),
     ];
 
+    Color red = Color(0xfff75c40);
+
     _seriesData3.add(
       charts.Series(
         id: 'Sales',
@@ -87,7 +91,7 @@ class _AnalysisGraphState extends State<AnalysisGraph> {
       child: Container(
         child: Column(
           children: <Widget>[
-            Text('Analysis', style: TextStyle(fontSize: 25),),
+            Text('Analysis', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),),
             buildChart1(context),
             buildChart2(context),
             buildChart3(context),
@@ -115,7 +119,7 @@ class _AnalysisGraphState extends State<AnalysisGraph> {
               padding: EdgeInsets.only(left: 10),
               child: Text('Tweet Analysis',
                 style: TextStyle(
-                    fontSize: 22.0,
+                    fontSize: 21.0,
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.bold,
                     color: Colors.black
@@ -130,7 +134,7 @@ class _AnalysisGraphState extends State<AnalysisGraph> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Chip(
-                    backgroundColor: Colors.green,
+                    backgroundColor: Color(0xff3ac758),
                     label: Text('Positive', style: TextStyle(color: Colors.white),),
                   ),
                 ],
@@ -167,7 +171,7 @@ class _AnalysisGraphState extends State<AnalysisGraph> {
               padding: EdgeInsets.only(left: 10),
               child: Text('Tweet Analysis',
                 style: TextStyle(
-                    fontSize: 22.0,
+                    fontSize: 21.0,
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.bold,
                     color: Colors.black
@@ -182,7 +186,7 @@ class _AnalysisGraphState extends State<AnalysisGraph> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Chip(
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Color(0xff4782d6),
                     label: Text('Neutral', style: TextStyle(color: Colors.white),),
                   ),
                 ],
@@ -219,7 +223,7 @@ class _AnalysisGraphState extends State<AnalysisGraph> {
               padding: EdgeInsets.only(left: 10),
               child: Text('Tweet Analysis',
                 style: TextStyle(
-                    fontSize: 22.0,
+                    fontSize: 21.0,
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.bold,
                     color: Colors.black

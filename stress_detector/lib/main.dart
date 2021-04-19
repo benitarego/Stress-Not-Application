@@ -97,7 +97,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   baseColor: Colors.white,
                   highlightColor: Colors.white30,
                   child: Container(
-                    padding: EdgeInsets.all(16.0),
+                    padding: EdgeInsets.all(20.0),
                     child: Text(
                       "Stress Not!",
                       textAlign: TextAlign.center,

@@ -67,6 +67,7 @@ class Onboarding extends StatelessWidget {
             size: Size(10.0, 10.0),
             color: kThemeColor,
             activeSize: Size(22.0, 10.0),
+            activeColor: Color(0xFFA5BDE9),
             activeShape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(25.0)),
             ),

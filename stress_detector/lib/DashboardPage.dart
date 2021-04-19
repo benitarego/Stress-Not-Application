@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:stress_detector/Essentials/ThemeColor.dart';
 import 'package:stress_detector/Pages/HomePage.dart';
-import 'package:stress_detector/Pages/AnalyticsPage.dart';
 import 'package:stress_detector/Pages/ProfilePage.dart';
+import 'package:stress_detector/Pages/AnalyticsPage.dart';
 import 'package:stress_detector/Pages/RecommendationsPage.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -77,27 +78,31 @@ class _DashboardPageState extends State<DashboardPage> {
         selectedFontSize: 15,
         unselectedFontSize: 15,
         selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
+        unselectedItemColor: Colors.white,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
-            backgroundColor: Colors.grey
+            icon: Icon(Icons.home_outlined, size: 30,),
+            activeIcon: Icon(Icons.home, size: 30,),
+            title: Container(),
+            // backgroundColor: Colors.grey
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.analytics),
-              title: Text('Analytics'),
-              backgroundColor: Colors.grey
+              icon: Icon(Icons.analytics_outlined, size: 30,),
+              activeIcon: Icon(Icons.analytics, size: 30,),
+              title: Container(),
+              // backgroundColor: Colors.grey
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.star),
-              title: Text('Recommendation'),
-              backgroundColor: Colors.grey
+              icon: Icon(Icons.star_border_outlined, size: 30,),
+              activeIcon: Icon(Icons.star, size: 30,),
+              title: Container(),
+              // backgroundColor: Colors.grey
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              title: Text('Profile'),
-              backgroundColor: Colors.grey
+              icon: Icon(Icons.person_outline_rounded, size: 30,),
+              activeIcon: Icon(Icons.person, size: 30,),
+              title: Container(),
+              // backgroundColor: Colors.grey
           ),
         ],
         onTap: (int tappedIndex) {
@@ -109,14 +114,13 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
       // bottomNavigationBar: CurvedNavigationBar(
       //   color: Colors.black,
-      //   backgroundColor: Colors.white,
+      //   backgroundColor: Colors.transparent,
       //   buttonBackgroundColor: kThemeColor,
       //   height: 50,
       //   items: <Widget>[
       //     Icon(Icons.home, color: Colors.white,),
       //     Icon(Icons.bar_chart, color: Colors.white,),
       //     Icon(Icons.star, color: Colors.white,),
-      //     Icon(Icons.person, color: Colors.white,),
       //   ],
       //   animationDuration: Duration(milliseconds: 400),
       //   onTap: (int tappedIndex) {

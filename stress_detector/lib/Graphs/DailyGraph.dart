@@ -13,6 +13,12 @@ class _DailyGraphState extends State<DailyGraph> {
   List<charts.Series<Tweets, String>> _seriesBarData, _seriesPieData;
   List<Tweets> mydata;
 
+  // var axis = charts.NumericAxisSpec(
+  //     renderSpec: charts.GridlineRendererSpec(
+  //       labelStyle: charts.TextStyleSpec(
+  //           fontSize: 20, color: charts.MaterialPalette.white),
+  //     ));
+
   _generateData(mydata) {
     //BAR GRAPH
     _seriesBarData = List<charts.Series<Tweets, String>>();
@@ -51,7 +57,7 @@ class _DailyGraphState extends State<DailyGraph> {
       child: Container(
         child: Column(
           children: <Widget>[
-            Text('Daily Analysis', style: TextStyle(fontSize: 25),),
+            Text('Daily Analysis', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),),
             _buildBody1(context),
             _buildBody2(context),
           ],
@@ -96,7 +102,7 @@ class _DailyGraphState extends State<DailyGraph> {
               padding: EdgeInsets.only(left: 10),
               child: Text('Tweet Analysis',
                 style: TextStyle(
-                    fontSize: 22.0,
+                    fontSize: 21.0,
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.bold,
                     color: Colors.black
@@ -108,7 +114,7 @@ class _DailyGraphState extends State<DailyGraph> {
               padding: EdgeInsets.only(left: 10),
               child: Text('Daily Analysis',
                 style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: 17.0,
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.bold,
                     color: Colors.grey
@@ -122,6 +128,8 @@ class _DailyGraphState extends State<DailyGraph> {
                   child: charts.BarChart(
                       _seriesBarData,
                       animate: true,
+                      // primaryMeasureAxis: axis,
+                      // domainAxis: axis,
                       animationDuration: Duration(seconds:1),
                       behaviors: [
                         new charts.DatumLegend(
