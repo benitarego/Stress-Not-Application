@@ -8,9 +8,8 @@ import 'package:stress_detector/Graphs/MonthlyGraph.dart';
 import 'package:stress_detector/Graphs/WeeklyGraph.dart';
 import 'package:stress_detector/Graphs/DailyGraph.dart';
 import 'package:stress_detector/LoginPage.dart';
-import 'package:flutter/services.dart';
-import 'package:whatsapp_share/whatsapp_share.dart';
-
+import 'package:twilio_flutter/twilio_flutter.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class AnalyticsPage extends StatefulWidget {
   @override
@@ -21,17 +20,15 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
 
   FirebaseAuth _auth = FirebaseAuth.instance;
   final TwitterLogin twitterLogin = new TwitterLogin(
-      consumerKey: '9b8smdO0UloxZojzQ3Eh4zR7e',
-      consumerSecret: 'MhmYPAiSSeoThxzvGtpSfwEQKuklKbDkQeen9q2Wrsb9bJjhJL'
+      consumerKey: '4xHhtirZfM5ejlT5ecQKVGhgv',
+      consumerSecret: 'iVkSlSYKQHCTYKls57cbKd9yPQJVup3f35LgMT8ZekTnAz5hlZ'
   );
 
-  Future<void> share() async {
-    await WhatsappShare.share(
-      text: "You're giving negative vibes bitch!",
-      linkUrl: 'https://flutter.dev/',
-      phone: '919892938847',
-    );
-  }
+  TwilioFlutter twilioFlutter = TwilioFlutter(
+    accountSid : 'AC46744f84e5ec287ffc39390bea20101d', // replace ** with Account SID
+    authToken : '356d8e8dc5d965a31288b83cb1ed3de2',  // replace xxx with Auth Token
+    twilioNumber : '+14155238886'  // replace .... with Twilio Number
+  );
 
   Widget _showgraph = new DailyGraph();
 
@@ -59,6 +56,26 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
   }
 
   String _statisticsVal = "Daily";
+
+  FlutterLocalNotificationsPlugin fltrNotification;
+
+  @override
+  void initState() {
+    super.initState();
+    var androidInitialize = new AndroidInitializationSettings('app_icon');
+    var initilizationsSettings =
+    new InitializationSettings(android: androidInitialize);
+    fltrNotification = new FlutterLocalNotificationsPlugin();
+    fltrNotification.initialize(initilizationsSettings);
+  }
+
+  _shownotification() async{
+    var androidDetails = new AndroidNotificationDetails(
+        "Channel ID", "Stress Not!", "You're tweeting hell lotta negative tweets! Calm down dude!", importance: Importance.max);
+    var generalNotificationDetails = new NotificationDetails(android: androidDetails);
+
+    await fltrNotification.show(0, "Alert!", "Lots of negativity tweeted on Twitter!\nCheck analysis.", generalNotificationDetails);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +163,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                   padding: EdgeInsets.only(top: 90),
                     child: FadeAnimation(0.7,
                         Center(
-                        child: _showgraph
+                          child: _showgraph
                     )
                     )
                 ),
@@ -157,21 +174,13 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
         tooltip: 'Send SMS',
         child: Icon(Icons.send),
         onPressed: () {
-          share();
-          // FOR SMS
-          // client.messages.create({
-          //   body: 'Hello there!!! Welcome aboard....Stay tuned.',
-          //   to: ‘+919892938847’,
-          //   from: ‘+14155238886,
-          // })
-          //FOR WHATSAPP
-          // client.messages
-          //     .create({
-          //   body: 'Hello newbie..Welcome aboard!!!! Learn more at: http://flatteredwithflutter.com/',
-          //   from: 'whatsapp: +14155238886’,
-          //   to: 'whatsapp: +919892938847’
-          // })
+          twilioFlutter.sendWhatsApp(
+              toNumber : '+919892938847',
+              messageBody : 'Hey! You seem to be having a declining mental state! Kindly check for nearby consultation firms on our application, if necessary. Regards, Stress Not! Team');
+          // _shownotification();
+          print('clicked');
         },
+
       ),
     );
   }

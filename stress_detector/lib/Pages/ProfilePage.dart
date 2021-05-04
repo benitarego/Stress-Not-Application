@@ -4,6 +4,7 @@ import 'package:stress_detector/Essentials/Loading.dart';
 import 'package:stress_detector/Essentials/ThemeColor.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:stress_detector/LoginPage.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -15,15 +16,15 @@ class _ProfilePageState extends State<ProfilePage> {
   bool loading = false;
 
   final TwitterLogin twitterLogin = new TwitterLogin(
-      consumerKey: '9b8smdO0UloxZojzQ3Eh4zR7e',
-      consumerSecret: 'MhmYPAiSSeoThxzvGtpSfwEQKuklKbDkQeen9q2Wrsb9bJjhJL'
+      consumerKey: '4xHhtirZfM5ejlT5ecQKVGhgv',
+      consumerSecret: 'iVkSlSYKQHCTYKls57cbKd9yPQJVup3f35LgMT8ZekTnAz5hlZ'
   );
 
   @override
   Widget build(BuildContext context) {
     return loading ? Loading() : Scaffold(
         appBar: AppBar(
-          title: Text("Profile", style: TextStyle(color: Colors.white),),
+          title: Text("My Profile", style: TextStyle(color: Colors.white),),
           centerTitle: true,
           backgroundColor: kThemeColor,
           elevation: 0,
@@ -67,7 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     Positioned(
                       child: Padding(
-                          padding: EdgeInsets.only(top:10, left: 20, right: 20),
+                          padding: EdgeInsets.only(top:10, left: 10, right: 10),
                           child: Container(
                             child: FutureBuilder(
                               future: FirebaseAuth.instance.currentUser(),
@@ -77,7 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ? Column(
                                       children: <Widget>[
                                         Container(
-                                          height: 250,
+                                          height: 260,
                                           width: MediaQuery.of(context).size.width,
                                           decoration: BoxDecoration(
                                               color: Colors.black,
@@ -96,6 +97,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                               ),
                                               SizedBox(height: 15),
                                               Text("${firebaseUser.displayName}", style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: 'Roboto'),),
+                                              SizedBox(height: 10),
+                                              Text("@regobenita", style: TextStyle(fontSize: 15, color: Colors.white, fontFamily: 'Roboto'),),
                                               SizedBox(height: 20),
                                               Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -103,7 +106,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                   Container(
                                                     child: Column(
                                                       children: <Widget>[
-                                                        Text('129', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),),
+                                                        Text('135', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),),
                                                         Text('tweets', style: TextStyle(color: Colors.white),),
                                                       ],
                                                     ),
@@ -111,7 +114,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                   Container(
                                                     child: Column(
                                                       children: <Widget>[
-                                                        Text('35', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),),
+                                                        Text('34', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),),
                                                         Text('followers', style: TextStyle(color: Colors.white),),
                                                       ],
                                                     ),
@@ -119,7 +122,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                   Container(
                                                     child: Column(
                                                       children: <Widget>[
-                                                        Text('48', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),),
+                                                        Text('49', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),),
                                                         Text('following', style: TextStyle(color: Colors.white),),
                                                       ],
                                                     ),
@@ -140,6 +143,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           ),
                                           title: Text('Total tweets'),
                                           trailing: Text('135'),
+                                          hoverColor: Color(0xffe4edff),
                                         ),
                                         ListTile(
                                           leading: CircleAvatar(
@@ -148,6 +152,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           ),
                                           title: Text('Positive tweets'),
                                           trailing: Text('57'),
+                                          hoverColor: Color(0xffe4edff),
                                         ),
                                         ListTile(
                                           leading: CircleAvatar(
@@ -156,6 +161,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           ),
                                           title: Text('Neutral tweets'),
                                           trailing: Text('52'),
+                                          hoverColor: Color(0xffe4edff),
                                         ),
                                         ListTile(
                                           leading: CircleAvatar(
@@ -164,6 +170,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           ),
                                           title: Text('Negative tweets'),
                                           trailing: Text('16'),
+                                          hoverColor: Color(0xffe4edff),
                                         ),
                                         // Container(
                                         //   padding: EdgeInsets.all(20),
@@ -184,6 +191,61 @@ class _ProfilePageState extends State<ProfilePage> {
                                         //   ),
                                         // ),
                                         SizedBox(height: 10),
+                                        Divider(thickness: 0.8,),
+                                        SizedBox(height: 20),
+                                        Text('Account Analysis', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                                        SizedBox(height: 20),
+                                        SfRadialGauge(
+                                            axes:<RadialAxis>[RadialAxis(
+                                                startAngle: 180,
+                                                endAngle: 0,
+                                                minimum: 0,
+                                                // maximum: 100,
+                                                showLabels: false,
+                                                // showAxisLine: false,
+                                                axisLineStyle: AxisLineStyle(thickness: 0.5,
+                                                  thicknessUnit: GaugeSizeUnit.factor,
+                                                  gradient: const SweepGradient(
+                                                      colors: <Color>[Color(0xffff4132), Color(0xffff8c00), Color(0xffffd600), Color(0xffc8dd15), Color(0xff69c43a)],
+                                                      stops: <double>[0.2, 0.4, 0.6, 0.8, 1],
+
+                                                  ),
+                                                ),
+                                                // ranges: <GaugeRange>[
+                                                //   GaugeRange(
+                                                //     startValue: 0,
+                                                //     endValue: 33.33,
+                                                //     color: Colors.green,
+                                                //   ),
+                                                //   GaugeRange(
+                                                //     startValue: 33.33,
+                                                //     endValue: 66.66,
+                                                //     color: Colors.orange,
+                                                //   ),
+                                                //   GaugeRange(
+                                                //     startValue: 66.66,
+                                                //     endValue: 100,
+                                                //     color: Colors.red,
+                                                //   )
+                                                // ],
+                                                pointers: <GaugePointer>[
+                                                  NeedlePointer(value: 57.2)
+                                                ],
+                                                annotations: <GaugeAnnotation>[
+                                                  GaugeAnnotation(
+                                                    widget: Container(
+                                                      child: const Text('57.2',
+                                                        style: TextStyle(
+                                                          fontSize: 25, fontWeight: FontWeight.bold)
+                                                        )
+                                                    ),
+                                                    angle: 90,
+                                                    positionFactor: 0.5
+                                                  )
+                                                ]
+                                            ),
+                                            ]
+                                        ),
                                       ],
                                     )
                                     : Center(

@@ -167,9 +167,9 @@ class _DailyGraphState extends State<DailyGraph> {
     mydata = taskdata;
     _generateData(mydata);
     return Padding(
-      padding: EdgeInsets.all(10),
-      child: Container(
-          height: 365,
+        padding: EdgeInsets.all(10),
+        child: Container(
+          height: 370,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(18),
               border: Border.all(color: Colors.black),

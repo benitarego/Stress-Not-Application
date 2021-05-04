@@ -1,164 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: "Notifications",
-//       debugShowCheckedModeBanner: false,
-//       theme: ThemeData(
-//         accentColor: Colors.red,
-//         primaryColor: Colors.red,
-//       ),
-//       home: Notification(),
-//     );
-//   }
-// }
-
-class Notification extends StatefulWidget {
+class Notifications extends StatefulWidget {
   @override
-  _NotificationState createState() => _NotificationState();
+  _NotificationsState createState() => _NotificationsState();
 }
 
-class _NotificationState extends State {
-  FlutterLocalNotificationsPlugin fltrNotification;
-  String _selectedParam;
-  String task;
-  int val;
+class _NotificationsState extends State<Notifications> {
 
+  FlutterLocalNotificationsPlugin fltrNotification;
   @override
   void initState() {
     super.initState();
-    var androidInitilize = new AndroidInitializationSettings('app_icon');
-    var iOSinitilize = new IOSInitializationSettings();
+    var androidInitialize = new AndroidInitializationSettings('applogo');
     var initilizationsSettings =
-    new InitializationSettings(android: androidInitilize, iOS: iOSinitilize);
+    new InitializationSettings(android: androidInitialize);
     fltrNotification = new FlutterLocalNotificationsPlugin();
     fltrNotification.initialize(initilizationsSettings,
         onSelectNotification: notificationSelected);
   }
 
-  Future _showNotification() async {
+  _shownotification() async{
     var androidDetails = new AndroidNotificationDetails(
-        "Channel ID", "Desi programmer", "This is my channel",
-        importance: Importance.max);
-    var iSODetails = new IOSNotificationDetails();
-    var generalNotificationDetails =
-    new NotificationDetails(android: androidDetails, iOS: iSODetails);
+        "Channel ID", "Stress Not!", "You're tweeting hell lotta negative tweets! Calm down dude!", importance: Importance.max);
+    var generalNotificationDetails = new NotificationDetails(android: androidDetails);
 
-    // await fltrNotification.show(
-    //     0, "Task", "You created a Task", generalNotificationDetails, payload: "Task");
-    var scheduledTime;
-    if (_selectedParam == "Hour") {
-      scheduledTime = DateTime.now().add(Duration(hours: val));
-    } else if (_selectedParam == "Minute") {
-      scheduledTime = DateTime.now().add(Duration(minutes: val));
-    } else {
-      scheduledTime = DateTime.now().add(Duration(seconds: val));
-    }
+    await fltrNotification.show(0, "Alert!", "You're tweeting hell lotta negative tweets! Calm down dude!", generalNotificationDetails);
 
-    fltrNotification.schedule(
-        1, "Times Uppp", task, scheduledTime, generalNotificationDetails);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: TextField(
-                decoration: InputDecoration(border: OutlineInputBorder()),
-                onChanged: (_val) {
-                  task = _val;
-                },
-              ),
-            ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //   children: [
-            //     DropdownButton(
-            //       value: _selectedParam,
-            //       items: [
-            //         DropdownMenuItem(
-            //           child: Text("Seconds"),
-            //           value: "Seconds",
-            //         ),
-            //         DropdownMenuItem(
-            //           child: Text("Minutes"),
-            //           value: "Minutes",
-            //         ),
-            //         DropdownMenuItem(
-            //           child: Text("Hour"),
-            //           value: "Hour",
-            //         ),
-            //       ],
-            //       hint: Text(
-            //         "Select Your Field.",
-            //         style: TextStyle(
-            //           color: Colors.black,
-            //         ),
-            //       ),
-            //       onChanged: (_val) {
-            //         setState(() {
-            //           _selectedParam = _val;
-            //         });
-            //       },
-            //     ),
-            //     DropdownButton(
-            //       value: val,
-            //       items: [
-            //         DropdownMenuItem(
-            //           child: Text("1"),
-            //           value: 1,
-            //         ),
-            //         DropdownMenuItem(
-            //           child: Text("2"),
-            //           value: 2,
-            //         ),
-            //         DropdownMenuItem(
-            //           child: Text("3"),
-            //           value: 3,
-            //         ),
-            //         DropdownMenuItem(
-            //           child: Text("4"),
-            //           value: 4,
-            //         ),
-            //       ],
-            //       hint: Text(
-            //         "Select Value",
-            //         style: TextStyle(
-            //           color: Colors.black,
-            //         ),
-            //       ),
-            //       onChanged: (_val) {
-            //         setState(() {
-            //           val = _val;
-            //         });
-            //       },
-            //     ),
-            //   ],
-            // ),
-            RaisedButton(
-              onPressed: _showNotification,
-              // child: new Text('Set Task With Notification'),
-            )
-          ],
-        ),
+          child: RaisedButton(
+            onPressed: _shownotification,
+            child: Text('Flutter Notifications'),
+          )
       ),
     );
   }
 
   Future notificationSelected(String payload) async {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        content: Text("Notification Clicked $payload"),
-      ),
-    );
+
   }
 }

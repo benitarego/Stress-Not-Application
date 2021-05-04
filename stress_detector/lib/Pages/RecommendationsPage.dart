@@ -18,8 +18,8 @@ class _PlacesSearchMapSample extends State<PlacesSearchMapSample> {
   static const String _API_KEY = 'AIzaSyAIFCtkfQICnpKwRiHWbryLqQ-Sb2RVOIA';
   FirebaseAuth _auth = FirebaseAuth.instance;
   final TwitterLogin twitterLogin = new TwitterLogin(
-      consumerKey: '9b8smdO0UloxZojzQ3Eh4zR7e',
-      consumerSecret: 'MhmYPAiSSeoThxzvGtpSfwEQKuklKbDkQeen9q2Wrsb9bJjhJL'
+      consumerKey: '4xHhtirZfM5ejlT5ecQKVGhgv',
+      consumerSecret: 'iVkSlSYKQHCTYKls57cbKd9yPQJVup3f35LgMT8ZekTnAz5hlZ'
   );
 
   Completer<GoogleMapController> _controller = Completer();

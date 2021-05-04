@@ -39,8 +39,6 @@ class _LoginScreenState extends State<LoginScreen> {
   bool loading = false;
   String message;
 
-
-
   @override
   Widget build(BuildContext context) {
     return loading ? Loading() : Scaffold(
@@ -167,8 +165,8 @@ class _LoginScreenState extends State<LoginScreen> {
 FirebaseAuth _auth = FirebaseAuth.instance;
 
 final TwitterLogin twitterLogin = new TwitterLogin(
-    consumerKey: '9b8smdO0UloxZojzQ3Eh4zR7e',
-    consumerSecret: 'MhmYPAiSSeoThxzvGtpSfwEQKuklKbDkQeen9q2Wrsb9bJjhJL'
+    consumerKey: '4xHhtirZfM5ejlT5ecQKVGhgv',
+    consumerSecret: 'iVkSlSYKQHCTYKls57cbKd9yPQJVup3f35LgMT8ZekTnAz5hlZ'
 );
 
 void _signInWithTwitter(String token, String secret) async {

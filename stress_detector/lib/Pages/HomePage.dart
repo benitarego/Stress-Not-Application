@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,8 +22,8 @@ class _HomePageState extends State<HomePage> {
 
   FirebaseAuth _auth = FirebaseAuth.instance;
   final TwitterLogin twitterLogin = new TwitterLogin(
-      consumerKey: '9b8smdO0UloxZojzQ3Eh4zR7e',
-      consumerSecret: 'MhmYPAiSSeoThxzvGtpSfwEQKuklKbDkQeen9q2Wrsb9bJjhJL'
+      consumerKey: '4xHhtirZfM5ejlT5ecQKVGhgv',
+      consumerSecret: 'iVkSlSYKQHCTYKls57cbKd9yPQJVup3f35LgMT8ZekTnAz5hlZ'
   );
 
   // final String url = "https://health.gov/myhealthfinder/api/v3/topicsearch.json?TopicId=30560";
@@ -125,7 +124,9 @@ class _HomePageState extends State<HomePage> {
                         Padding(
                             padding: EdgeInsets.only(left: 20, top: 10),
                             child: FlatButton.icon(
-                              onPressed: () {},
+                              onPressed: () {
+                                launch("tel://9152987821");
+                              },
                               icon: Icon(Icons.phone, color: Colors.white,),
                               label: Text('Call Now', style: TextStyle(color: Colors.white),),
                               shape: RoundedRectangleBorder(

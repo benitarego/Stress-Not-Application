@@ -42,9 +42,9 @@ dependencies:
   shared_preferences:
   introduction_screen:
   flutter_local_notifications:
-  url_launcher: ^5.7.10
-  flutter_gauge: ^1.0.8
-  whatsapp_share: ^1.1.1
+  url_launcher: ^6.0.3
+  twilio_flutter:
+  syncfusion_flutter_gauges:
 
 flutter_icons:
   image_path: "assets/applogo.png"
