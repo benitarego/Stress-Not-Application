@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_twitter_login/flutter_twitter_login.dart';
+import 'package:stress_detector/DashboardPage.dart';
 import 'package:stress_detector/Essentials/Loading.dart';
 import 'package:stress_detector/Essentials/ThemeColor.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,7 +15,6 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
 
   bool loading = false;
-
   final TwitterLogin twitterLogin = new TwitterLogin(
       consumerKey: '4xHhtirZfM5ejlT5ecQKVGhgv',
       consumerSecret: 'iVkSlSYKQHCTYKls57cbKd9yPQJVup3f35LgMT8ZekTnAz5hlZ'
@@ -78,7 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ? Column(
                                       children: <Widget>[
                                         Container(
-                                          height: 260,
+                                          height: 250,
                                           width: MediaQuery.of(context).size.width,
                                           decoration: BoxDecoration(
                                               color: Colors.black,
@@ -97,8 +97,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                               ),
                                               SizedBox(height: 15),
                                               Text("${firebaseUser.displayName}", style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: 'Roboto'),),
-                                              SizedBox(height: 10),
-                                              Text("@regobenita", style: TextStyle(fontSize: 15, color: Colors.white, fontFamily: 'Roboto'),),
                                               SizedBox(height: 20),
                                               Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -106,7 +104,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                   Container(
                                                     child: Column(
                                                       children: <Widget>[
-                                                        Text('135', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),),
+                                                        Text('360', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),),
                                                         Text('tweets', style: TextStyle(color: Colors.white),),
                                                       ],
                                                     ),
@@ -114,7 +112,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                   Container(
                                                     child: Column(
                                                       children: <Widget>[
-                                                        Text('34', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),),
+                                                        Text('37', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),),
                                                         Text('followers', style: TextStyle(color: Colors.white),),
                                                       ],
                                                     ),
@@ -122,7 +120,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                   Container(
                                                     child: Column(
                                                       children: <Widget>[
-                                                        Text('49', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),),
+                                                        Text('55', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),),
                                                         Text('following', style: TextStyle(color: Colors.white),),
                                                       ],
                                                     ),
@@ -142,7 +140,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                             radius: 15,
                                           ),
                                           title: Text('Total tweets'),
-                                          trailing: Text('135'),
+                                          trailing: Text('360'),
                                           hoverColor: Color(0xffe4edff),
                                         ),
                                         ListTile(
@@ -151,7 +149,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                             radius: 10,
                                           ),
                                           title: Text('Positive tweets'),
-                                          trailing: Text('57'),
+                                          trailing: Text('104'),
                                           hoverColor: Color(0xffe4edff),
                                         ),
                                         ListTile(
@@ -160,7 +158,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                             radius: 10,
                                           ),
                                           title: Text('Neutral tweets'),
-                                          trailing: Text('52'),
+                                          trailing: Text('126'),
                                           hoverColor: Color(0xffe4edff),
                                         ),
                                         ListTile(
@@ -169,7 +167,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                             radius: 10,
                                           ),
                                           title: Text('Negative tweets'),
-                                          trailing: Text('16'),
+                                          trailing: Text('130'),
                                           hoverColor: Color(0xffe4edff),
                                         ),
                                         // Container(
@@ -211,30 +209,13 @@ class _ProfilePageState extends State<ProfilePage> {
 
                                                   ),
                                                 ),
-                                                // ranges: <GaugeRange>[
-                                                //   GaugeRange(
-                                                //     startValue: 0,
-                                                //     endValue: 33.33,
-                                                //     color: Colors.green,
-                                                //   ),
-                                                //   GaugeRange(
-                                                //     startValue: 33.33,
-                                                //     endValue: 66.66,
-                                                //     color: Colors.orange,
-                                                //   ),
-                                                //   GaugeRange(
-                                                //     startValue: 66.66,
-                                                //     endValue: 100,
-                                                //     color: Colors.red,
-                                                //   )
-                                                // ],
                                                 pointers: <GaugePointer>[
-                                                  NeedlePointer(value: 57.2)
+                                                  NeedlePointer(value: 36.1)
                                                 ],
                                                 annotations: <GaugeAnnotation>[
                                                   GaugeAnnotation(
                                                     widget: Container(
-                                                      child: const Text('57.2',
+                                                      child: const Text('36.1',
                                                         style: TextStyle(
                                                           fontSize: 25, fontWeight: FontWeight.bold)
                                                         )
@@ -258,6 +239,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     )
                   ],
                 ),
+                Text("Made with ❤️ from Stress Not! Team", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 15),),
+                SizedBox(height: 20,),
               ],
             )
         )

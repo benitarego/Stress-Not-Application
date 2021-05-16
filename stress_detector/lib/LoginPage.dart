@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -7,6 +9,7 @@ import 'package:stress_detector/Essentials/FadeAnimation.dart';
 import 'package:stress_detector/Essentials/Loading.dart';
 import 'package:stress_detector/Essentials/ThemeColor.dart';
 import 'package:stress_detector/AdditionalInfo.dart';
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatelessWidget {
   @override
@@ -29,15 +32,79 @@ class LoginPage extends StatelessWidget {
 }
 
 class LoginScreen extends StatefulWidget {
-  // final String uid;
-  // LoginScreen({Key key, this.uid}) : super(key: key);
+  final String uid;
+  LoginScreen({Key key, this.uid}) : super(key: key);
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
   bool loading = false;
-  String message;
+  String title = "";
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
+  final TwitterLogin twitterLogin = TwitterLogin(
+      consumerKey: '4xHhtirZfM5ejlT5ecQKVGhgv',
+      consumerSecret: 'iVkSlSYKQHCTYKls57cbKd9yPQJVup3f35LgMT8ZekTnAz5hlZ'
+  );
+
+  void _signInWithTwitter(String token, String secret) async {
+    final AuthCredential credential = TwitterAuthProvider.getCredential(
+        authToken: token,
+        authTokenSecret: secret
+    );
+    await _auth.signInWithCredential(credential);
+  }
+
+  void login() async {
+    final TwitterLoginResult result = await twitterLogin.authorize();
+    String newMessage;
+    if (result.status == TwitterLoginStatus.loggedIn) {
+      setState(() => loading = true);
+      _signInWithTwitter(result.session.token, result.session.secret);
+      print(result.session.username);
+      print(result.session.userId);
+
+      try {
+        var response = await http.post(
+            Uri.encodeFull("http://10.0.2.2:5000/tweets"),
+            headers: {"Content-Type": "application/json"},
+            body: json.encode({
+              'username': result.session.username.toString(),
+              'user_id': result.session.userId.toString(),
+            })
+        );
+        var data = json.decode(response.body);
+        print(data);
+      } catch(error) {
+        print(error);
+      }
+
+
+      newMessage = "Logged in! username: ${result.session.username}";
+
+      print('Logged in successfully!');
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => DashboardPage()),
+      );
+    } else if (result.status == TwitterLoginStatus.cancelledByUser) {
+      newMessage = "Login cancelled by user.";
+    } else {
+      newMessage = "Login error: ${result.errorMessage}";
+    }
+    setState(() {
+      title = newMessage;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,8 +171,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 children: <Widget>[
                                   Image.asset(
                                     'assets/twitter.png',
-                                    width: 30,
-                                    height: 30,
+                                    width: 25,
+                                    height: 25,
                                   ),
                                   SizedBox(width: 20,),
                                   Text(
@@ -113,7 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 17
+                                        fontSize: 16
                                     ),
                                   ),
                                 ],
@@ -122,7 +189,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           )),
                           SizedBox(height: 20),
                           Text(
-                            message == null ? "" : message,
+                            title == null ? "" : title,
                             style: TextStyle(
                               color: Colors.red,
                               fontWeight: FontWeight.bold,
@@ -140,39 +207,4 @@ class _LoginScreenState extends State<LoginScreen> {
       )
     );
   }
-
-  void login() async {
-    final TwitterLoginResult result = await twitterLogin.authorize();
-    String newMessage;
-    if (result.status == TwitterLoginStatus.loggedIn) {
-      _signInWithTwitter(result.session.token, result.session.secret);
-      print('Logged in successfully!');
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => DashboardPage()),
-      );
-    } else if (result.status == TwitterLoginStatus.cancelledByUser) {
-      newMessage = 'Login cancelled by user.';
-    } else {
-      newMessage = result.errorMessage;
-    }
-    setState(() {
-      message = newMessage;
-    });
-  }
-}
-
-FirebaseAuth _auth = FirebaseAuth.instance;
-
-final TwitterLogin twitterLogin = new TwitterLogin(
-    consumerKey: '4xHhtirZfM5ejlT5ecQKVGhgv',
-    consumerSecret: 'iVkSlSYKQHCTYKls57cbKd9yPQJVup3f35LgMT8ZekTnAz5hlZ'
-);
-
-void _signInWithTwitter(String token, String secret) async {
-  final AuthCredential credential = TwitterAuthProvider.getCredential(
-      authToken: token,
-      authTokenSecret: secret
-  );
-  await _auth.signInWithCredential(credential);
 }

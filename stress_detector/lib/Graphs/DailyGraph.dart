@@ -18,6 +18,12 @@ class _DailyGraphState extends State<DailyGraph> {
   //       labelStyle: charts.TextStyleSpec(
   //           fontSize: 20, color: charts.MaterialPalette.white),
   //     ));
+  Tweets tweets;
+  var threshold = 35;
+
+  // if (threshold > tweets.statVal[0]) {
+  //   // put alert message here
+  // }
 
   _generateData(mydata) {
     //BAR GRAPH
@@ -68,6 +74,7 @@ class _DailyGraphState extends State<DailyGraph> {
 
   Widget _buildBody1(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
+      // stream: Firestore.instance.collection('results').orderBy("timestamp").limit(1).snapshots(),
       stream: Firestore.instance.collection('tweets').snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
@@ -76,6 +83,7 @@ class _DailyGraphState extends State<DailyGraph> {
           List<Tweets> tweets = snapshot.data.documents
               .map((documentSnapshot) => Tweets.fromMap(documentSnapshot.data))
               .toList();
+          // List<Map<String, dynamic>> ;
           return _buildChart1(context, tweets);
         }
       },
@@ -137,7 +145,13 @@ class _DailyGraphState extends State<DailyGraph> {
                               color: charts.MaterialPalette.black,
                               fontFamily: 'Roboto',
                               fontSize: 18),
-                        )
+                        ),
+                        // new charts.RangeAnnotation([
+                        //   charts.LineAnnotationSegment(
+                        //       40, charts.RangeAnnotationAxisType.domain,
+                        //       color: charts.MaterialPalette.black,
+                        //       endLabel: '40%'
+                        //   )])
                       ] ?? ''
                   ),
                 )

@@ -8,10 +8,12 @@ import 'package:stress_detector/Essentials/ThemeColor.dart';
 import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 import 'package:stress_detector/LoginPage.dart';
 import 'package:stress_detector/Essentials/Loading.dart';
-import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
+import 'package:video_player/video_player.dart';
 
 class HomePage extends StatefulWidget {
+  HomePage({Key key}) : super(key: key);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -26,32 +28,7 @@ class _HomePageState extends State<HomePage> {
       consumerSecret: 'iVkSlSYKQHCTYKls57cbKd9yPQJVup3f35LgMT8ZekTnAz5hlZ'
   );
 
-  // final String url = "https://health.gov/myhealthfinder/api/v3/topicsearch.json?TopicId=30560";
-  // List articles;
-  //
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   this.getJsonData();
-  // }
-  //
-  // Future<String> getJsonData() async {
-  //   var response = await http.get(
-  //       Uri.encodeFull(url),
-  //   );
-  //
-  //   print(response.body);
-  //
-  //   setState(() {
-  //     var convertDataToJson = jsonDecode(response.body);
-  //     articles = convertDataToJson['Result'];
-  //   });
-  //
-  //   return "Success";
-  // }
-
-
-  _launchURL() async {
+  _launchArticle1URL() async {
     const url = 'https://zenhabits.net/10-simple-ways-to-live-a-less-stressful-life/';
     if (await canLaunch(url)) {
       await launch(url);
@@ -60,9 +37,48 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  _launchArticle2URL() async {
+    const url = 'http://itsoktotalk.in/find-help/';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  _launchTalktoExpert() async {
+    const url = 'http://www.samaritansmumbai.com/';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  VideoPlayerController _controller;
+  Future<void> _initializeVideoPlayerFuture;
+
+  @override
+  void initState() {
+    // _controller = VideoPlayerController.network(
+    //     "https://github.com/benitarego/Mental-Health-Analysis/tree/master/stress_detector/videos/mental.mp4");
+    _controller = VideoPlayerController.asset("videos/mental.mp4");
+    _initializeVideoPlayerFuture = _controller.initialize();
+    // _controller.setLooping(true);
+    // _controller.setVolume(1.0);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return loading ? Loading() : Scaffold(
+      resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text("Dashboard", style: TextStyle(color: Colors.white),),
           centerTitle: true,
@@ -94,7 +110,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: <Widget>[
               Container(
-                height: 170,
+                height: 195,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     color: kThemeColor,
@@ -111,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                       child: Text('Welcome!', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 20, top: 10),
+                      padding: EdgeInsets.only(left: 20, top: 20),
                       child: Text('Do you want to talk to someone?', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.white),),
                     ),
                     Padding(
@@ -122,10 +138,10 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Padding(
-                            padding: EdgeInsets.only(left: 20, top: 10),
+                            padding: EdgeInsets.only(left: 20, top: 20),
                             child: FlatButton.icon(
                               onPressed: () {
-                                launch("tel://9152987821");
+                                launch("tel:918422984528");
                               },
                               icon: Icon(Icons.phone, color: Colors.white,),
                               label: Text('Call Now', style: TextStyle(color: Colors.white),),
@@ -138,7 +154,9 @@ class _HomePageState extends State<HomePage> {
                         Padding(
                             padding: EdgeInsets.only(left: 20, top: 10),
                             child: FlatButton.icon(
-                              onPressed: () {},
+                              onPressed: () {
+                                _launchTalktoExpert();
+                              },
                               icon: Icon(Icons.messenger, color: Colors.white,),
                               label: Text('Chat with expert', style: TextStyle(color: Colors.white),),
                               shape: RoundedRectangleBorder(
@@ -157,13 +175,13 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       children: <Widget>[
                         FadeAnimation(0.5, Container(
-                          padding: EdgeInsets.only(left: 20, top: 10),
+                          padding: EdgeInsets.only(left: 20, top: 20),
                           child: Text('Coping with Stress', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600, color: Colors.black),),
                         ),),
                         SizedBox(height: 20),
                         FadeAnimation(0.7, Container(
                           margin: EdgeInsets.only(left: 20, right: 20),
-                          height: 190.0,
+                          height: 210.0,
                           child: ListView(
                             scrollDirection: Axis.horizontal,
                             children: <Widget>[
@@ -260,26 +278,10 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),),
                         SizedBox(height: 20),
-                        // Container(
-                        //   margin: EdgeInsets.only(left: 20, right: 20),
-                        //   height: 300.0,
-                        //   child: ListView.builder(
-                        //       itemCount: articles == null ? 0 : articles.length,
-                        //       itemBuilder: (context, index) {
-                        //         return Container(
-                        //             decoration: BoxDecoration(
-                        //                 borderRadius: BorderRadius.circular(10),
-                        //                 color: Colors.white70
-                        //             ),
-                        //             child: Text(articles[index]['Title'], style: TextStyle(fontSize: 20, color: Colors.black),)
-                        //         );
-                        //       }
-                        //   )
-                        // )
                         FadeAnimation(0.9, Padding(
                           padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
                           child: GestureDetector(
-                            onDoubleTap: _launchURL,
+                            onDoubleTap: _launchArticle1URL,
                             child: Container(
                                 padding: EdgeInsets.all(10),
                                 height: 155,
@@ -309,33 +311,115 @@ class _HomePageState extends State<HomePage> {
                                               fontSize: 15
                                           ),),
                                         SizedBox(height: 10),
-                                        // GestureDetector(
-                                        //   onDoubleTap: () {},
-                                        //   child: Container(
-                                        //     width: 80,
-                                        //     height: 25,
-                                        //     padding: EdgeInsets.only(left: 7, right: 2),
-                                        //     decoration: BoxDecoration(
-                                        //         color: Color(0xFF3744ac),
-                                        //         borderRadius: BorderRadius.circular(30)
-                                        //     ),
-                                        //     child: Row(
-                                        //       mainAxisAlignment: MainAxisAlignment.center,
-                                        //       children: <Widget>[
-                                        //         Text('Click', style: TextStyle(color: Colors.white, fontSize: 14),),
-                                        //         SizedBox(width: 3,),
-                                        //         Icon(Icons.double_arrow, color: Colors.white,)
-                                        //       ],
-                                        //     ),
-                                        //   ),
-                                        // )
                                       ],
                                     )
                                   ],
                                 )
                             ),
                           )
-                        ),)
+                        ),),
+                        FadeAnimation(1.1, Padding(
+                          padding: const EdgeInsets.only(left: 20, right:20, top: 10),
+                          child: Container(
+                            height: 310,
+                            padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+                            decoration: BoxDecoration(
+                              color: kThemeColor,
+                              borderRadius: BorderRadius.circular(20)
+                            ),
+                            child: Column(
+                              children: <Widget>[
+                                Text("What is Mental Health?", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic, fontSize: 18),),
+                                SizedBox(height: 5,),
+                                Text("Get to know more about it in this video.", style: TextStyle(color: Colors.white54, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic, fontSize: 15),),
+                                SizedBox(height: 10,),
+                                FutureBuilder(
+                                  future: _initializeVideoPlayerFuture,
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState == ConnectionState.done) {
+                                      return Center(
+                                          child: _controller.value.initialized ? FittedBox(
+                                            fit: BoxFit.cover,
+                                            child: SizedBox(
+                                              height: _controller.value.size?.height ?? 0,
+                                              width: _controller.value.size?.width ?? 0,
+                                              child: VideoPlayer(_controller),
+                                            )
+                                          ) : Text('No video to show', style: TextStyle(color: Colors.white),)
+                                      );
+                                    } else {
+                                      return Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    }
+                                  },
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      // If the video is playing, pause it.
+                                      if (_controller.value.isPlaying) {
+                                        _controller.pause();
+                                      } else {
+                                        // If the video is paused, play it.
+                                        _controller.play();
+                                      }
+                                    });
+                                  },
+                                  color: Colors.white,
+                                  icon: Icon(
+                                    _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ),
+                        ),
+                        ),
+                        SizedBox(height: 20,),
+                        FadeAnimation(1.1, Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
+                            child: GestureDetector(
+                              onDoubleTap: _launchArticle2URL,
+                              child: Container(
+                                  padding: EdgeInsets.all(10),
+                                  height: 160,
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Color(0xFFA5BDE9)
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: <Widget>[
+                                      Image.asset('assets/itsoktotalk.png', height: 150, width: 150),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          SizedBox(height: 8),
+                                          Text("It's OK to Talk!", style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold
+                                          ),),
+                                          SizedBox(height: 10),
+                                         Text("'It's OK to Talk' is a safe\nspace to share your\nexperience with mental\nhealth, mental illness\nand well being.",
+                                             style: TextStyle(
+                                                 color: Colors.white,
+                                                 fontSize: 15
+                                             ),),
+                                          SizedBox(height: 10),
+                                        ],
+                                      )
+                                    ],
+                                  )
+                              ),
+                            )
+                        ),),
+                        SizedBox(height: 40,),
+                        Text("Made with ❤️ from Stress Not! Team", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 15),),
+                        SizedBox(height: 20,),
                       ],
                     ),
                   )

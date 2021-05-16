@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "mental-health-evaluation-6f832",
+  "private_key_id": "5cd8ad5b6cb3caea587e0b8ad4bacd00e2c8c9f2",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQD8wNrCp3UZI5UO\nHJ70FWZOdYdd0UzUYfLmlzPmLslpEqyv4QqOuuwodGKqXqOKNa+WDV3pwC7GtHAU\npT3numCebKhezCQW2nwUCur1EU7mW7M6fXsNX8Mr5apeqLRQxy0NiutB9f86cJfs\nuue6ZEu8GjTTdHOWpdczdrNpIZ+HrelValR9sSlQrVSRCGGvC8P9UqrmbtYPpstE\nkiTdKGD1JA/MN5sRvTn3Zj9Q1gpTtRvXp3bcQ5sBrtj7CugRNg3yeaB/dQOhFOOO\nSK7RYeWwdagA/56XT9ABZick76e4iqJ1N2rpxxkr1tVX+DpkEMdHy6UNmoSdS/i6\nWOhMNx2bAgMBAAECggEAdfSm4zr1WhMSB/DxeaXXBfyxfOYlveQsUNL1xJHHK0Ms\n1jPnEm9HsSWHukzKc8DUPenlDybCbbddqzTmrBN97dF1zi/lE8lJKK1js5UtRjI7\ndauD1tz/H6hiFyUSabRaYTyYyEK+pw5OyIr9hC40bgeo6ZoqK38f7IOT/RdU9SMW\nGgdTblR0UsVU+DzPAo8RbcvuUmKcUFNJs6FkdtnWOG2+mMlvxLBPCG3zCBoIQpIS\n9KoLDPz/Zo92cPuk5aQvqOb8MH6PCXoZJ2qp9EcLX+BFon5Gd6baRSBqQHw+nzbr\nQOVX/MuJScU5bIJB5o4Xg7JVvl61gM089cZDWOH5yQKBgQD+bWdjRAXPaqEACYL8\nQP1Vm+Zyd71biNVtQywoMN95m3CZawMWjf0BIbRiaQxVNP9IKL+lKpy4Y6oSAgvu\n93OY4aGvey4gP4QY3FTlFkS4FDvNYRGhgUpqj8KI2n9wvqRItorECaNONHXfg4MG\nXb+V9oq7MZKTYw5xwWZMF9hGJwKBgQD+UM1ApNDvloBgKt2hxFoDb8yxgwiBVydC\n2Fm9oJKNQJMAvdyvc8nVTtGhy5SBBxZFddz7cZ6/B/5snzNe+I39qlRNy6FMOZJx\nm5BSpDJVFZqgAJ0VWgJEORwpXHA0moSO/z6vrgPioEZonI51900dpj63hAYaGDFg\nNdjHaxMpbQKBgQCdiBvVqI54aKsbHMiPa6Xv1cGP6nfCLy0Go+q5T9lusEG9nDaj\nRnL6umW38RcDwva1NRXELGgw+vSYhc/hvDFE3Z+AyaI7sVgXFIUz+t+9ojmM5qdF\n+ombBTwMBE2X/1I0+2FcFCObDnxVUlZUIMO5FJe9Y+o/e7u7z2WJg9ITTQKBgFFQ\nzsA7st7YtYWKT0F5QfrVVZLwvdh1YIVcHh2m6RUnL5nOG3EySbfdsuPT71DuTi25\niQYRB1w3lx9uLAPS37vbKYeSc6mmwu92eUgjXkCcXsuIRrHcDNt5k0qaVvpK6dW7\nQXT05CMjcj/ixx5rC4pObMFLApR3ZdpIfV8OGptlAoGBAJAXCPoC7+mMz2ph7Jrs\n5A2ngOMlkJhjjwiwCTcsgig+e3qL/4xIwEue75v7EPF/dRWGxtecxSyH8uNZKgyW\n4FZR3x9MGvG2kBKePhJ3b+RqQnv5e6e6RyzxcRY6AnRod3i0BBSqCNVO1NFRPi0k\nnitVK5tfBM4mr+KRjtEN8hE5\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-zjm12@mental-health-evaluation-6f832.iam.gserviceaccount.com",
+  "client_id": "106980123186022473708",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-zjm12%40mental-health-evaluation-6f832.iam.gserviceaccount.com"
+}

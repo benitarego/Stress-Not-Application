@@ -11,6 +11,16 @@ import 'package:stress_detector/LoginPage.dart';
 import 'package:twilio_flutter/twilio_flutter.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+class NotificationBadge extends StatelessWidget {
+  final int totalNotifications;
+  const NotificationBadge({@required this.totalNotifications});
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+
 class AnalyticsPage extends StatefulWidget {
   @override
   _AnalyticsPageState createState() => _AnalyticsPageState();
@@ -62,7 +72,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
   @override
   void initState() {
     super.initState();
-    var androidInitialize = new AndroidInitializationSettings('app_icon');
+    var androidInitialize = new AndroidInitializationSettings('@mipmap/ic_launcher');
     var initilizationsSettings =
     new InitializationSettings(android: androidInitialize);
     fltrNotification = new FlutterLocalNotificationsPlugin();
@@ -86,7 +96,14 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
         backgroundColor: kThemeColor,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.menu, color: Colors.white, size: 25,),
+          icon: Icon(Icons.menu, color: Colors.white, size: 25, ),
+          onPressed: () {
+            twilioFlutter.sendWhatsApp(
+                toNumber : '+917715816259',
+                messageBody : 'Hey! You seem to be having a declining mental state! Kindly check for nearby consultation firms on our application, if necessary\n\nRegards,\nStress Not! Team');
+            _shownotification();
+            print('clicked');
+          }
         ),
         actions: [
           IconButton(
@@ -168,20 +185,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                     )
                 ),
               ],
-            ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: kThemeColor,
-        tooltip: 'Send SMS',
-        child: Icon(Icons.send),
-        onPressed: () {
-          twilioFlutter.sendWhatsApp(
-              toNumber : '+919892938847',
-              messageBody : 'Hey! You seem to be having a declining mental state! Kindly check for nearby consultation firms on our application, if necessary. Regards, Stress Not! Team');
-          // _shownotification();
-          print('clicked');
-        },
-
-      ),
+            )
     );
   }
 }
