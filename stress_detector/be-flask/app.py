@@ -29,10 +29,10 @@ default_app = initialize_app(cred)
 db = firestore.client()
 
 #Twitter API credentials
-consumer_key = "4xHhtirZfM5ejlT5ecQKVGhgv"
-consumer_secret = "iVkSlSYKQHCTYKls57cbKd9yPQJVup3f35LgMT8ZekTnAz5hlZ"
-access_key = "1090237519634022403-nJk1suG9nwO3ShpialOU1vAQdYecrS"
-access_secret = "DgneEiyAGdtuo9Bsr9iN6l9OWMx8Y78VtKaSqwh5vDFt2"
+consumer_key = "xxxxxxxxxxxxxxxxxxxxxxxxx"
+consumer_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+access_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+access_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 stoplist = stopwords.words('english')
 
 #-----------------FUNCTIONS------------------------
