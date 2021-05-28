@@ -15,9 +15,9 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
 
   bool loading = false;
-  final TwitterLogin twitterLogin = new TwitterLogin(
-      consumerKey: '4xHhtirZfM5ejlT5ecQKVGhgv',
-      consumerSecret: 'iVkSlSYKQHCTYKls57cbKd9yPQJVup3f35LgMT8ZekTnAz5hlZ'
+  final TwitterLogin twitterLogin = TwitterLogin(
+      consumerKey: 'xxxxxxxxxxxxxxxxxxxxxxxx',
+      consumerSecret: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
   );
 
   @override
