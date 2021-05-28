@@ -15,11 +15,11 @@ class PlacesSearchMapSample extends StatefulWidget {
 
 class _PlacesSearchMapSample extends State<PlacesSearchMapSample> {
 
-  static const String _API_KEY = 'AIzaSyAIFCtkfQICnpKwRiHWbryLqQ-Sb2RVOIA';
+  static const String _API_KEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
   FirebaseAuth _auth = FirebaseAuth.instance;
-  final TwitterLogin twitterLogin = new TwitterLogin(
-      consumerKey: '4xHhtirZfM5ejlT5ecQKVGhgv',
-      consumerSecret: 'iVkSlSYKQHCTYKls57cbKd9yPQJVup3f35LgMT8ZekTnAz5hlZ'
+  final TwitterLogin twitterLogin = TwitterLogin(
+      consumerKey: 'xxxxxxxxxxxxxxxxxxxxxxxx',
+      consumerSecret: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
   );
 
   Completer<GoogleMapController> _controller = Completer();
@@ -93,11 +93,11 @@ class _PlacesSearchMapSample extends State<PlacesSearchMapSample> {
 
   Future<void> _minus(double zoomVal) async {
     final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(19.081822, 72.851561), zoom: zoomVal)));
+    controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(<addyourlatitude>, <addyourlongitude>), zoom: zoomVal)));
   }
   Future<void> _plus(double zoomVal) async {
     final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(19.081822, 72.851561), zoom: zoomVal)));
+    controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(<addyourlatitude>, <addyourlongitude>), zoom: zoomVal)));
   }
 
   Widget _buildContainer() {
@@ -114,42 +114,42 @@ class _PlacesSearchMapSample extends State<PlacesSearchMapSample> {
               padding: const EdgeInsets.all(8.0),
               child: _boxes(
                   "https://lh5.googleusercontent.com/p/AF1QipMPZnBuaULhDRG08-GBqGZTnkkJ510tcqn2RgAr=w408-h306-k-no",
-                  19.080622447835268, 72.84220135423166,"R K Hospital"),
+                  <addyourlatitude>, <addyourlongitude>,"R K Hospital"),
             ),
             SizedBox(width: 10.0),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: _boxes(
                   "https://lh5.googleusercontent.com/p/AF1QipPlSd5diiq9FgWfCLr9Kra-xymgI5oQDIqB3zLe=w408-h544-k-no",
-                  19.07741985809697, 72.85817353888743,"Niron Hospital"),
+                  <addyourlatitude>, <addyourlongitude>,"Niron Hospital"),
             ),
             SizedBox(width: 10.0),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: _boxes(
                   "https://lh5.googleusercontent.com/p/AF1QipNUBOlD-QPn2ZDin5lZNkbqvGMXWpUnvzUZo-ZO=w425-h240-k-no",
-                  19.08089202913187, 72.85463538320347,"Aseem Hospital"),
+                  <addyourlatitude>, <addyourlongitude>,"Aseem Hospital"),
             ),
             SizedBox(width: 10.0),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: _boxes(
                   "https://lh5.googleusercontent.com/p/AF1QipP1_8aNIgxho7uwsbmFdzCIi7Hk2OEzwev2QVpd=w426-h240-k-no",
-                  19.078968673512403, 72.84505134689485,"V N Desai Hospital"),
+                  <addyourlatitude>, <addyourlongitude>,"V N Desai Hospital"),
             ),
             SizedBox(width: 10.0),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: _boxes(
                   "https://lh5.googleusercontent.com/p/AF1QipMIoEVQtkDFnCJfjMZ7uLVRl0go-03rXnwdLI9-=w408-h725-k-no",
-                  19.073194657932994, 72.84455627555363,"Sanjeevani Hospital"),
+                  <addyourlatitude>, <addyourlongitude>,"Sanjeevani Hospital"),
             ),
             SizedBox(width: 10.0),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: _boxes(
                   "https://lh5.googleusercontent.com/p/AF1QipNDQhhtmbiXM31U1wHBYE7W9X9zBqEXb89-RmK0=w408-h306-k-no",
-                  19.079106758007857, 72.86631646342134,"Sahyog Wellcare Hospital"),
+                  <addyourlatitude>, <addyourlongitude>,"Sahyog Wellcare Hospital"),
             ),
           ],
         ),
@@ -296,7 +296,7 @@ class _PlacesSearchMapSample extends State<PlacesSearchMapSample> {
       width: MediaQuery.of(context).size.width,
       child: GoogleMap(
         mapType: MapType.normal,
-        initialCameraPosition:  CameraPosition(target: LatLng(19.081822, 72.851561), zoom: 12),
+        initialCameraPosition:  CameraPosition(target: LatLng(<addyourlatitude>, <addyourlongitude>), zoom: 12),
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
@@ -316,7 +316,7 @@ class _PlacesSearchMapSample extends State<PlacesSearchMapSample> {
 
 Marker rkMarker = Marker(
   markerId: MarkerId('rk'),
-  position: LatLng(19.0803, 72.8422),
+  position: LatLng(<addyourlatitude>, <addyourlongitude>),
   infoWindow: InfoWindow(title: 'R K Hospital'),
   icon: BitmapDescriptor.defaultMarkerWithHue(
     BitmapDescriptor.hueViolet,
@@ -325,7 +325,7 @@ Marker rkMarker = Marker(
 
 Marker nironMarker = Marker(
   markerId: MarkerId('niron'),
-  position: LatLng(19.0772, 72.8582),
+  position: LatLng(<addyourlatitude>, <addyourlongitude>),
   infoWindow: InfoWindow(title: 'Niron Hospital'),
   icon: BitmapDescriptor.defaultMarkerWithHue(
     BitmapDescriptor.hueViolet,
@@ -333,7 +333,7 @@ Marker nironMarker = Marker(
 );
 Marker aseemMarker = Marker(
   markerId: MarkerId('aseem'),
-  position: LatLng(19.08089202913187, 72.85463538320347),
+  position: LatLng(<addyourlatitude>, <addyourlongitude>),
   infoWindow: InfoWindow(title: 'Aseem Hospital'),
   icon: BitmapDescriptor.defaultMarkerWithHue(
     BitmapDescriptor.hueViolet,
@@ -344,7 +344,7 @@ Marker aseemMarker = Marker(
 
 Marker vnMarker = Marker(
   markerId: MarkerId('vn'),
-  position: LatLng(19.078968673512403, 72.84505134689485),
+  position: LatLng(<addyourlatitude>, <addyourlongitude>),
   infoWindow: InfoWindow(title: 'V N Desai Hospital'),
   icon: BitmapDescriptor.defaultMarkerWithHue(
     BitmapDescriptor.hueViolet,
@@ -352,7 +352,7 @@ Marker vnMarker = Marker(
 );
 Marker sahyogMarker = Marker(
   markerId: MarkerId('sahyog'),
-  position: LatLng(19.079106758007857, 72.86631646342134),
+  position: LatLng(<addyourlatitude>, <addyourlongitude>),
   infoWindow: InfoWindow(title: 'Sahyog Wellcare Hospital'),
   icon: BitmapDescriptor.defaultMarkerWithHue(
     BitmapDescriptor.hueViolet,
