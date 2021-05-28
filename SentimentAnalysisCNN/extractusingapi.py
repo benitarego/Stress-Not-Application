@@ -1,10 +1,10 @@
 import tweepy
 
 # Your Twittter App Credentials
-consumer_key = "IXo5uEathVAM3NIQcsYTioDTY"
-consumer_secret = "rSfXe1a3Qk1V9B3DSrbcVJZrH402FLWvjsbiFQ9BvJ0MxWMJV6"
-access_key = "1090237519634022403-zelXU9FpzGCaFlnzR1Id96THCxUo4D"
-access_secret = "RyRb5ZHko1Uwhv8QZcafUtBUBAZdLKrtUP6Mbmh24tRKG"
+consumer_key = ""
+consumer_secret = ""
+access_key = ""
+access_secret = ""
 
 # Function to extract tweets 
 def get_tweets(username): 
