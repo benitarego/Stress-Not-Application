@@ -19,12 +19,12 @@ class SentimentAnalysis:
     # Change access details below to point to own application
     def download_data(self):
         # authenticating
-        consumerKey = 'IXo5uEathVAM3NIQcsYTioDTY'
-        consumerSecret = 'rSfXe1a3Qk1V9B3DSrbcVJZrH402FLWvjsbiFQ9BvJ0MxWMJV6'
-        accessToken = '1090237519634022403-zelXU9FpzGCaFlnzR1Id96THCxUo4D'
-        accessTokenSecret = 'RyRb5ZHko1Uwhv8QZcafUtBUBAZdLKrtUP6Mbmh24tRKG'
-        auth = tweepy.OAuthHandler(consumerKey, consumerSecret)
-        auth.set_access_token(accessToken, accessTokenSecret)
+        consumer_key = "xxxxxxxxxxxxxxxxxxxxxxxx"
+        consumer_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        access_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        access_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        auth = tweepy.OAuthHandler(consumer-key, consumer_secret)
+        auth.set_access_token(access_key, access_secret)
         api = tweepy.API(auth)
 
         # input for term to be searched and how many tweets to search
