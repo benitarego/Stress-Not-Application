@@ -35,9 +35,9 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
   );
 
   TwilioFlutter twilioFlutter = TwilioFlutter(
-    accountSid : 'AC46744f84e5ec287ffc39390bea20101d', // replace ** with Account SID
-    authToken : '356d8e8dc5d965a31288b83cb1ed3de2',  // replace xxx with Auth Token
-    twilioNumber : '+14155238886'  // replace .... with Twilio Number
+    accountSid : '**********************************', // replace ** with Account SID
+    authToken : '********************************',  // replace xxx with Auth Token
+    twilioNumber : '+...........'  // replace .... with Twilio Number
   );
 
   Widget _showgraph = new DailyGraph();
@@ -99,7 +99,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
           icon: Icon(Icons.menu, color: Colors.white, size: 25, ),
           onPressed: () {
             twilioFlutter.sendWhatsApp(
-                toNumber : '+917715816259',
+                toNumber : '+............',
                 messageBody : 'Hey! You seem to be having a declining mental state! Kindly check for nearby consultation firms on our application, if necessary\n\nRegards,\nStress Not! Team');
             _shownotification();
             print('clicked');
