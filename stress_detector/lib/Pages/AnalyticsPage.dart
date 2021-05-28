@@ -29,9 +29,9 @@ class AnalyticsPage extends StatefulWidget {
 class _AnalyticsPageState extends State<AnalyticsPage> {
 
   FirebaseAuth _auth = FirebaseAuth.instance;
-  final TwitterLogin twitterLogin = new TwitterLogin(
-      consumerKey: '4xHhtirZfM5ejlT5ecQKVGhgv',
-      consumerSecret: 'iVkSlSYKQHCTYKls57cbKd9yPQJVup3f35LgMT8ZekTnAz5hlZ'
+  final TwitterLogin twitterLogin = TwitterLogin(
+      consumerKey: 'xxxxxxxxxxxxxxxxxxxxxxxx',
+      consumerSecret: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
   );
 
   TwilioFlutter twilioFlutter = TwilioFlutter(
