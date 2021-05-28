@@ -1,8 +1,8 @@
 import os
 from requests_oauthlib import OAuth1Session
 
-consumer_key = 'IXo5uEathVAM3NIQcsYTioDTY'  # Add your API key here
-consumer_secret = 'rSfXe1a3Qk1V9B3DSrbcVJZrH402FLWvjsbiFQ9BvJ0MxWMJV6'  # Add your API secret key here
+consumer_key = "xxxxxxxxxxxxxxxxxxxxxxxx"
+consumer_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 params = {"ids": "1138505981460193280", "tweet.fields": "created_at"}
 
