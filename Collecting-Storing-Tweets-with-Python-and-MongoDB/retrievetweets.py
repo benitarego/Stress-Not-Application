@@ -7,10 +7,10 @@ MONGO_HOST= 'mongodb://localhost/twitterdb'
 
 WORDS = ['#depression', '#suicide', '#sad', '#happy', '#enthusiastic', '#beautiful', '#amazing', '#lovely', 'anxiety', '#upset']
 
-CONSUMER_KEY = "IXo5uEathVAM3NIQcsYTioDTY"
-CONSUMER_SECRET = "rSfXe1a3Qk1V9B3DSrbcVJZrH402FLWvjsbiFQ9BvJ0MxWMJV6"
-ACCESS_TOKEN = "1090237519634022403-zelXU9FpzGCaFlnzR1Id96THCxUo4D"
-ACCESS_TOKEN_SECRET = "RyRb5ZHko1Uwhv8QZcafUtBUBAZdLKrtUP6Mbmh24tRKG"
+CONSUMER_KEY = "xxxxxxxxxxxxxxxxxxxxxxxx"
+CONSUMER_SECRET = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+ACCESS_TOKEN = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+ACCESS_TOKEN_SECRET = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 class StreamListener(tweepy.StreamListener):    
     #This is a class provided by tweepy to access the Twitter Streaming API. 
