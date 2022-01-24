@@ -15,5 +15,3 @@ To analyze the tweets and classify whether it is positive, negative or neutral a
 4. Alert the user if the stress level exceeds a certain limit
 
 5. Counting the tweets on the basis of 3 categories: +ve -ve neutral
-
-Technology Stack: Python, NLP, Flask, Flutter, Cloud Firestore, Twitter OAuth 2.0, Google Maps API, Twilio API
